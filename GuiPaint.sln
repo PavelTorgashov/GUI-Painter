@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiPainter", "GuiPainter\GuiPainter.csproj", "{0968CCE1-22B2-451E-ACFA-7102E282E14E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiPaintLibrary", "GuiPaintLibrary\GuiPaintLibrary.csproj", "{C0BADBF0-1103-4B21-BE2A-5D44A38EF01B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0968CCE1-22B2-451E-ACFA-7102E282E14E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0968CCE1-22B2-451E-ACFA-7102E282E14E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0968CCE1-22B2-451E-ACFA-7102E282E14E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0968CCE1-22B2-451E-ACFA-7102E282E14E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0BADBF0-1103-4B21-BE2A-5D44A38EF01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0BADBF0-1103-4B21-BE2A-5D44A38EF01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0BADBF0-1103-4B21-BE2A-5D44A38EF01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0BADBF0-1103-4B21-BE2A-5D44A38EF01B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FA9BC84-25FF-46AE-B975-D3C145BD59FE}
+	EndGlobalSection
+EndGlobal

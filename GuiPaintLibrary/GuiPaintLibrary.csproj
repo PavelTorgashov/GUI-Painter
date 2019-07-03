@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C0BADBF0-1103-4B21-BE2A-5D44A38EF01B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GuiPaintLibrary</RootNamespace>
+    <AssemblyName>GuiPaintLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Helper.cs" />
+    <Compile Include="Common\IRendererTransformedPath.cs" />
+    <Compile Include="Common\ITextBlock.cs" />
+    <Compile Include="Common\ObjectCloner.cs.cs" />
+    <Compile Include="Common\PointFExtension.cs" />
+    <Compile Include="Common\SerializableGraphicsImage.cs" />
+    <Compile Include="Common\SerializableGraphicsMatrix.cs" />
+    <Compile Include="Common\SerializableGraphicsPath.cs" />
+    <Compile Include="Common\VersionInfo.cs" />
+    <Compile Include="Figures\Figure.cs" />
+    <Compile Include="Figures\FigureBuilder.cs" />
+    <Compile Include="Figures\Layer.cs" />
+    <Compile Include="Geometries\AddLineGeometry.cs" />
+    <Compile Include="Geometries\BezierGeometry.cs" />
+    <Compile Include="Geometries\FrameGeometry.cs" />
+    <Compile Include="Geometries\Geometry.cs" />
+    <Compile Include="Geometries\ITransformedGeometry.cs" />
+    <Compile Include="Geometries\PolygoneGeometry.cs" />
+    <Compile Include="Geometries\PrimitiveBezier.cs" />
+    <Compile Include="Geometries\PrimitiveGeometry.cs" />
+    <Compile Include="Geometries\TextGeometry.cs" />
+    <Compile Include="Geometries\WedgeGeometry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\BezierTextRenderer.cs" />
+    <Compile Include="Renderers\DefaultRenderer.cs" />
+    <Compile Include="Renderers\ImageRenderer.cs" />
+    <Compile Include="Renderers\Renderer.cs" />
+    <Compile Include="Renderers\RendererDecorator.cs" />
+    <Compile Include="Renderers\TextRenderer.cs" />
+    <Compile Include="Renderers\WarpRendererDecorator.cs" />
+    <Compile Include="Selections\Selection.cs" />
+    <Compile Include="Selections\SelectionHelper.cs" />
+    <Compile Include="Styles\Border.cs" />
+    <Compile Include="Styles\DefaultFill.cs" />
+    <Compile Include="Styles\Fill.cs" />
+    <Compile Include="Styles\FillDecorator.cs" />
+    <Compile Include="Styles\IGradientFill.cs" />
+    <Compile Include="Styles\Style.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
