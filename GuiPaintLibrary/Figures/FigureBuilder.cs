@@ -42,6 +42,20 @@ namespace GuiPaintLibrary.Figures
         }
 
         /// <summary>
+        /// Построение пути для прямоугольника со скругленными углами
+        /// </summary>
+        /// <param name="figure">Фигура для присвоения геометрии</param>
+        /// <param name="radius">Радиус скругления (от 0 до 0.5)</param>
+        public static void BuildRoundedRectangleGeometry(Figure figure, float radius)
+        {
+            var path = new SerializableGraphicsPath();
+            path.Path.AddPath(RoundedRectangle.Create(new RectangleF(-0.5f, -0.5f, 1, 1),
+                                                      radius < 0 ? 0 : radius > 0.5f ? 0.5f : radius), false);
+            figure.Geometry = new PrimitiveGeometry(path, AllowedOperations.All ^ AllowedOperations.Vertex)
+            { Name = "RoundedRectangle" };
+        }
+
+        /// <summary>
         /// Построение пути для круга
         /// </summary>
         /// <param name="figure">Фигура для присвоения геометрии</param>

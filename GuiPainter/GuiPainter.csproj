@@ -46,13 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CanvasUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CanvasUserControl.Designer.cs">
+      <DependentUpon>CanvasUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\ActionCommand.cs" />
     <Compile Include="Common\CursorFactory.cs" />
+    <Compile Include="Common\FigureTreeNode.cs" />
     <Compile Include="Common\UndoableCommand.cs" />
     <Compile Include="Common\UndoRedoManager.cs" />
     <Compile Include="Controllers\Marker.cs" />
     <Compile Include="Controllers\SelectionController.cs" />
     <Compile Include="Controllers\UndoRedoController.cs" />
+    <Compile Include="Controls\IEditor.cs" />
+    <Compile Include="Controls\LayerSelectionInfo.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CanvasUserControl.resx">
+      <DependentUpon>CanvasUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -72,6 +84,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -91,6 +104,75 @@
       <Project>{c0badbf0-1103-4b21-be2a-5d44a38ef01b}</Project>
       <Name>GuiPaintLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\105.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\106.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\133.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\134.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\137.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\138.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\139.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\231.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\232.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\266.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\294.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\295poly.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\296.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\306.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\330.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\346.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\380.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14617.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CROP.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ELLIP.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ELLIPSE.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RECT.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rotate.cur" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,3 +3,4 @@ D:\Work\GuiPaint\GuiPaintLibrary\bin\Debug\GuiPaintLibrary.pdb
 D:\Work\GuiPaint\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csproj.CoreCompileInputs.cache
 D:\Work\GuiPaint\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.dll
 D:\Work\GuiPaint\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.pdb
+D:\Work\GuiPaint\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csprojAssemblyReference.cache

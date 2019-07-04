@@ -49,6 +49,7 @@
     <Compile Include="Common\ITextBlock.cs" />
     <Compile Include="Common\ObjectCloner.cs.cs" />
     <Compile Include="Common\PointFExtension.cs" />
+    <Compile Include="Common\RoundedRectangle.cs" />
     <Compile Include="Common\SerializableGraphicsImage.cs" />
     <Compile Include="Common\SerializableGraphicsMatrix.cs" />
     <Compile Include="Common\SerializableGraphicsPath.cs" />

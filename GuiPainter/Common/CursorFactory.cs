@@ -41,29 +41,29 @@ namespace GuiPainter.Common
         static CursorFactory()
         {
             UserCursors = new Dictionary<UserCursor, Cursor>();
-            //AddCursor(UserCursor.Rotate, Properties.Resources.Rotate);
-            //AddCursor(UserCursor.SizeNWSE, Properties.Resources.SizeNWSE);
-            //AddCursor(UserCursor.SizeNESW, Properties.Resources.SizeNESW);
-            //AddCursor(UserCursor.SizeWE, Properties.Resources.SizeWE);
-            //AddCursor(UserCursor.SizeNS, Properties.Resources.SizeNS);
-            //AddCursor(UserCursor.SizeAll, Properties.Resources.SizeAll);
-            //AddCursor(UserCursor.MoveAll, Properties.Resources.MoveAll);
-            //AddCursor(UserCursor.SelectByRibbonRect, Properties.Resources.SelectByRibbonRect);
-            //AddCursor(UserCursor.CreateRect, Properties.Resources.CreateRect);
-            //AddCursor(UserCursor.CreateSquare, Properties.Resources.CreateSquare);
-            //AddCursor(UserCursor.CreateEllipse, Properties.Resources.CreateEllipse);
-            //AddCursor(UserCursor.CreateCircle, Properties.Resources.CreateCircle);
-            //AddCursor(UserCursor.CreatePolyline, Properties.Resources.CreatePolyline);
-            //AddCursor(UserCursor.CreateBlockText, Properties.Resources.CreateBlockText);
-            //AddCursor(UserCursor.CreateText, Properties.Resources.CreateText);
-            //AddCursor(UserCursor.CreateImage, Properties.Resources.CreateImage);
-            //AddCursor(UserCursor.CreatePicture, Properties.Resources.CreatePicture);
-            //AddCursor(UserCursor.SkewHorizontal, Properties.Resources.SkewHorizontal);
-            //AddCursor(UserCursor.SkewVertical, Properties.Resources.SkewVertical);
-            //AddCursor(UserCursor.AddVertex, Properties.Resources.AddVertex);
-            //AddCursor(UserCursor.RemoveVertex, Properties.Resources.RemoveVertex);
-            //AddCursor(UserCursor.MoveVertex, Properties.Resources.MoveVertex);
-            //AddCursor(UserCursor.DragCopy, Properties.Resources.DragCopy);
+            AddCursor(UserCursor.Rotate, Properties.Resources.Rotate);
+            AddCursor(UserCursor.SizeNWSE, Properties.Resources.SizeNWSE);
+            AddCursor(UserCursor.SizeNESW, Properties.Resources.SizeNESW);
+            AddCursor(UserCursor.SizeWE, Properties.Resources.SizeWE);
+            AddCursor(UserCursor.SizeNS, Properties.Resources.SizeNS);
+            AddCursor(UserCursor.SizeAll, Properties.Resources.SizeAll);
+            AddCursor(UserCursor.MoveAll, Properties.Resources.MoveAll);
+            AddCursor(UserCursor.SelectByRibbonRect, Properties.Resources.SelectByRibbonRect);
+            AddCursor(UserCursor.CreateRect, Properties.Resources.CreateRect);
+            AddCursor(UserCursor.CreateSquare, Properties.Resources.CreateSquare);
+            AddCursor(UserCursor.CreateEllipse, Properties.Resources.CreateEllipse);
+            AddCursor(UserCursor.CreateCircle, Properties.Resources.CreateCircle);
+            AddCursor(UserCursor.CreatePolyline, Properties.Resources.CreatePolyline);
+            AddCursor(UserCursor.CreateBlockText, Properties.Resources.CreateBlockText);
+            AddCursor(UserCursor.CreateText, Properties.Resources.CreateText);
+            AddCursor(UserCursor.CreateImage, Properties.Resources.CreateImage);
+            AddCursor(UserCursor.CreatePicture, Properties.Resources.CreatePicture);
+            AddCursor(UserCursor.SkewHorizontal, Properties.Resources.SkewHorizontal);
+            AddCursor(UserCursor.SkewVertical, Properties.Resources.SkewVertical);
+            AddCursor(UserCursor.AddVertex, Properties.Resources.AddVertex);
+            AddCursor(UserCursor.RemoveVertex, Properties.Resources.RemoveVertex);
+            AddCursor(UserCursor.MoveVertex, Properties.Resources.MoveVertex);
+            AddCursor(UserCursor.DragCopy, Properties.Resources.DragCopy);
             // добавлять курсоры здесь
         }
 
