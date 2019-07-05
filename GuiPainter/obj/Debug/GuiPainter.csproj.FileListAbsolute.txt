@@ -12,3 +12,17 @@ D:\Work\GuiPaint\GuiPainter\obj\Debug\GuiPainter.exe
 D:\Work\GuiPaint\GuiPainter\obj\Debug\GuiPainter.pdb
 D:\Work\GuiPaint\GuiPainter\obj\Debug\GuiPainter.csprojAssemblyReference.cache
 D:\Work\GuiPaint\GuiPainter\obj\Debug\GuiPainter.csproj.CopyComplete
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\bin\Debug\GuiPainter.exe.config
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\bin\Debug\GuiPainter.exe
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\bin\Debug\GuiPainter.pdb
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\bin\Debug\GuiPaintLibrary.dll
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\bin\Debug\GuiPaintLibrary.pdb
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csprojAssemblyReference.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.CanvasUserControl.resources
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.MainForm.resources
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.Properties.Resources.resources
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csproj.GenerateResource.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csproj.CoreCompileInputs.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csproj.CopyComplete
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.exe
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.pdb

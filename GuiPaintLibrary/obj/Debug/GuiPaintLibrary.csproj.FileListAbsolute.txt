@@ -4,3 +4,9 @@ D:\Work\GuiPaint\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csproj.CoreCompileInp
 D:\Work\GuiPaint\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.dll
 D:\Work\GuiPaint\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.pdb
 D:\Work\GuiPaint\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csprojAssemblyReference.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\bin\Debug\GuiPaintLibrary.dll
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\bin\Debug\GuiPaintLibrary.pdb
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csprojAssemblyReference.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csproj.CoreCompileInputs.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.dll
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.pdb
