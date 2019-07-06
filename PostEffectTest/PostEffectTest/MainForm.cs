@@ -23,6 +23,7 @@ namespace PostEffectTest
         {
             InitializeComponent();
             lbFormTitle.BackColor = HeaderColor;
+            ToolStripManager.Renderer = new ToolStripProfessionalRenderer(new CustomProfessionalColors());
 
             cbEffect.DataSource = new string[] { "DropShadowEffect", "GlowEffect", "BevelEffect", "EmbossEffect" };
 
@@ -144,5 +145,30 @@ namespace PostEffectTest
         {
             Application.Exit();
         }
+    }
+
+    class CustomProfessionalColors : ProfessionalColorTable
+    {
+        public override Color ToolStripGradientBegin => Color.DodgerBlue;
+        public override Color ToolStripGradientMiddle => Color.DodgerBlue;
+        public override Color ToolStripGradientEnd => Color.DodgerBlue;
+        public override Color MenuStripGradientBegin => Color.DodgerBlue;
+        public override Color MenuStripGradientEnd => Color.DodgerBlue;
+
+        //public override Color ToolStripPanelGradientBegin => Color.DodgerBlue;
+        //public override Color ToolStripPanelGradientEnd => Color.DodgerBlue;
+
+        //public override Color OverflowButtonGradientBegin => Color.DodgerBlue;
+        //public override Color ToolStripContentPanelGradientBegin => Color.DodgerBlue;
+
+        //public override Color ToolStripDropDownBackground => Color.DodgerBlue;
+        //public override Color ButtonPressedGradientBegin => Color.DodgerBlue;
+
+        //public override Color MenuItemSelected => Color.DodgerBlue;
+        //public override Color MenuItemSelectedGradientBegin => Color.DodgerBlue.Light();
+        //public override Color MenuItemSelectedGradientEnd => Color.DodgerBlue.Light();
+        //public override Color MenuItemPressedGradientBegin => Color.DodgerBlue.Light(-20);
+        //public override Color MenuItemPressedGradientMiddle => Color.DodgerBlue.Light(-20);
+        //public override Color MenuItemPressedGradientEnd => Color.DodgerBlue.Light(-20);
     }
 }

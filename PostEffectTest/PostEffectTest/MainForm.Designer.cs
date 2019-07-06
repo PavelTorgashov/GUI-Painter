@@ -42,9 +42,13 @@
             this.lbFormTitle = new System.Windows.Forms.MouseTransparentLabel();
             this.fastList1 = new FastTreeNS.FastList();
             this.btClose = new System.Windows.Forms.Button();
+            this.msMain = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miClose = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.nudOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBlur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
+            this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbChess
@@ -197,8 +201,9 @@
             // btClose
             // 
             this.btClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btClose.FlatAppearance.BorderSize = 0;
             this.btClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btClose.Image = global::PostEffectTest.Properties.Resources.icons8_close_window_50;
+            this.btClose.Image = global::PostEffectTest.Properties.Resources.icons8_multiply_24;
             this.btClose.Location = new System.Drawing.Point(768, 2);
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(28, 25);
@@ -206,12 +211,41 @@
             this.btClose.UseVisualStyleBackColor = true;
             this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
+            // msMain
+            // 
+            this.msMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.msMain.Dock = System.Windows.Forms.DockStyle.None;
+            this.msMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem});
+            this.msMain.Location = new System.Drawing.Point(118, 2);
+            this.msMain.Name = "msMain";
+            this.msMain.Size = new System.Drawing.Size(65, 27);
+            this.msMain.TabIndex = 14;
+            // 
+            // menuToolStripMenuItem
+            // 
+            this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miClose});
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(57, 23);
+            this.menuToolStripMenuItem.Text = "Menu";
+            // 
+            // miClose
+            // 
+            this.miClose.Name = "miClose";
+            this.miClose.Size = new System.Drawing.Size(117, 26);
+            this.miClose.Text = "Close";
+            this.miClose.Click += new System.EventHandler(this.btClose_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(798, 498);
+            this.Controls.Add(this.msMain);
             this.Controls.Add(this.btClose);
             this.Controls.Add(this.fastList1);
             this.Controls.Add(this.cbOuter);
@@ -225,12 +259,15 @@
             this.Controls.Add(this.lbColorPicker);
             this.Controls.Add(this.cbChess);
             this.Controls.Add(this.lbFormTitle);
+            this.MainMenuStrip = this.msMain;
             this.MoveOnWholeForm = true;
             this.Name = "MainForm";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.nudOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBlur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).EndInit();
+            this.msMain.ResumeLayout(false);
+            this.msMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,6 +288,9 @@
         private System.Windows.Forms.MouseTransparentLabel lbFormTitle;
         private FastTreeNS.FastList fastList1;
         private System.Windows.Forms.Button btClose;
+        private System.Windows.Forms.MenuStrip msMain;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miClose;
     }
 }
 
