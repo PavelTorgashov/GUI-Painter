@@ -35,14 +35,12 @@ namespace SuperfastBlur
             });
         }
 
-        public Bitmap Process(int radial, Color color)
+        public Bitmap Process(int radial, Color color1, Color color2, Func<float, float> coeffFunc = null)
         {
             var newBlue = new int[_width * _height];
             var dest = new int[_width * _height];
 
             gaussBlur_4(_blue, newBlue, radial);
-            var preparedColor = (uint)(color.ToArgb() & 0x00ffffff);
-            var opacity = color.A / 255f;
 
             Parallel.For(0, dest.Length, _pOptions, i =>
             {
@@ -53,8 +51,11 @@ namespace SuperfastBlur
                 if (alpha < 0)
                     alpha = 0;
 
-                alpha = (int)(alpha * opacity);
-                dest[i] = (int)(preparedColor | (uint)alpha << 24);
+                var coeff = alpha / 255f;
+                if (coeffFunc != null)
+                    coeff = coeffFunc(coeff);
+
+                dest[i] = GraphicsHelper.Lerp(color2, color1, coeff).ToArgb();
             });
 
             var image = new Bitmap(_width, _height);

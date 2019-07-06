@@ -36,6 +36,7 @@
             this.nudSize = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.nudDistance = new System.Windows.Forms.NumericUpDown();
+            this.cbEffect = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
@@ -129,12 +130,23 @@
             0});
             this.nudDistance.ValueChanged += new System.EventHandler(this.cbChess_CheckedChanged);
             // 
+            // cbEffect
+            // 
+            this.cbEffect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEffect.FormattingEnabled = true;
+            this.cbEffect.Location = new System.Drawing.Point(12, 54);
+            this.cbEffect.Name = "cbEffect";
+            this.cbEffect.Size = new System.Drawing.Size(250, 24);
+            this.cbEffect.TabIndex = 8;
+            this.cbEffect.SelectedIndexChanged += new System.EventHandler(this.cbChess_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(709, 498);
+            this.Controls.Add(this.cbEffect);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.nudDistance);
             this.Controls.Add(this.label2);
@@ -163,6 +175,7 @@
         private System.Windows.Forms.NumericUpDown nudSize;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nudDistance;
+        private System.Windows.Forms.ComboBox cbEffect;
     }
 }
 

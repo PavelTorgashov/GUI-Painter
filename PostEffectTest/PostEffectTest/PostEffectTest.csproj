@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Effects\BaseEffect.cs" />
     <Compile Include="Effects\DropShadowEffect.cs" />
+    <Compile Include="Effects\InnerGlowEffect.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
