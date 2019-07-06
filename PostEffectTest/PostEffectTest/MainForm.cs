@@ -13,13 +13,16 @@ using System.Windows.Forms;
 
 namespace PostEffectTest
 {
-    public partial class Form1 : Form
+    public partial class MainForm : BorderLessForm
     {
+        public Color HeaderColor { get; set; } = Color.DodgerBlue;
+
         GraphicsPath path = new GraphicsPath();
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+            lbFormTitle.BackColor = HeaderColor;
 
             cbEffect.DataSource = new string[] { "DropShadowEffect", "GlowEffect", "BevelEffect", "EmbossEffect" };
 
@@ -41,6 +44,13 @@ namespace PostEffectTest
             path.AddEllipse(500, 500, 100, 100);
 
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
+
+            //new EffectsForm().Show();
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            //base.OnPaintBackground(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -50,6 +60,8 @@ namespace PostEffectTest
             using (var brush = cbChess.Checked ? (Brush)new TextureBrush(Properties.Resources.chess) : (Brush)new SolidBrush(Color.White))
                 e.Graphics.FillRectangle(brush, ClientRectangle);
 
+            e.Graphics.DrawRectangle(HeaderColor.Pen(5), ClientRectangle);
+
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             e.Graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
             e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -57,7 +69,7 @@ namespace PostEffectTest
             if (effectName == "DropShadowEffect")
                 RenderShadowEffect(e.Graphics, path);
 
-            new FillEffect() { Color = Color.Gray }.Render(e.Graphics, path);
+            new FillEffect() { Color = Color.Red }.Render(e.Graphics, path);
 
             if (effectName == "BevelEffect")
                 RenderBevelEffect(e.Graphics, path);
@@ -126,6 +138,11 @@ namespace PostEffectTest
                 label.BackColor = dlg.Color;
 
             Invalidate(false);
+        }
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

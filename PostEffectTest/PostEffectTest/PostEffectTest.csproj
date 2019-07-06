@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FastTree">
+      <HintPath>.\FastTree.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\BorderLessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MouseTransparentLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Effects\BaseEffect.cs" />
     <Compile Include="Effects\BevelEffect.cs" />
     <Compile Include="Effects\DropShadowEffect.cs" />
@@ -53,11 +62,11 @@
     <Compile Include="Effects\FillEffect.cs" />
     <Compile Include="Effects\GlowEffect.cs" />
     <Compile Include="Effects\StrokeEffect.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\GaussianBlur.cs" />
     <Compile Include="Utils\GaussianBlurOneChannel.cs" />
@@ -65,8 +74,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\GraphicsHelper.cs" />
     <Compile Include="Utils\PointFHelper.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\chess.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
