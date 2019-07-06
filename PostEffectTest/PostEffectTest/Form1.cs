@@ -21,7 +21,7 @@ namespace PostEffectTest
         {
             InitializeComponent();
 
-            cbEffect.DataSource = new string[] { "DropShadowEffect", "InnerGlowEffect" };
+            cbEffect.DataSource = new string[] { "DropShadowEffect", "GlowEffect", "BevelEffect" };
 
             var pos = new Point(200, 200);
             var size = new Size(300, 200);
@@ -31,6 +31,8 @@ namespace PostEffectTest
               new Point(pos.X + size.Width, pos.Y + size.Height),
               new Point(pos.X, pos.Y + size.Height)});
             path.CloseFigure();
+
+            path.AddEllipse(500, 500, 100, 100);
 
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
         }
@@ -52,8 +54,10 @@ namespace PostEffectTest
             using (var brush = new SolidBrush(Color.FromArgb(255, Color.Red)))
                 e.Graphics.FillPath(brush, path);
 
-            if (effectName == "InnerGlowEffect")
+            if (effectName == "BevelEffect")
                 RenderBevelEffect(e.Graphics, path);
+            if (effectName == "GlowEffect")
+                RenderGlowEffect(e.Graphics, path);
         }
 
         private void RenderShadowEffect(Graphics gr, GraphicsPath path)
@@ -61,19 +65,31 @@ namespace PostEffectTest
             var e = new DropShadowEffect();
             var opactity = (byte)(255f * (float)nudOpacity.Value / 100f);
             e.Color = Color.FromArgb(opactity, lbColorPicker.BackColor);
-            e.Size = (int)nudSize.Value;
+            e.Blur = (int)nudBlur.Value;
             e.Distance = (int)nudDistance.Value;
+
+            e.Render(gr, path);
+        }
+
+        private void RenderGlowEffect(Graphics gr, GraphicsPath path)
+        {
+            var e = new GlowEffect() { OuterGlow = cbOuter.Checked };
+            var opactity = (byte)(255f * (float)nudOpacity.Value / 100f);
+            e.Color = Color.FromArgb(opactity, lbColorPicker.BackColor);
+            e.Blur = (int)nudBlur.Value;
+            //e.Distance = (int)nudDistance.Value;
 
             e.Render(gr, path);
         }
 
         private void RenderBevelEffect(Graphics gr, GraphicsPath path)
         {
-            var e = new InnerGlowEffect();
+            var e = new BevelEffect() { };
             var opactity = (byte)(255f * (float)nudOpacity.Value / 100f);
             e.Color = Color.FromArgb(opactity, lbColorPicker.BackColor);
-            e.Size = (int)nudSize.Value;
-            //e.Distance = (int)nudDistance.Value;
+            e.ColorShadow = Color.FromArgb(GraphicsHelper.Saturate(opactity) , Color.Black);
+            e.Blur = (int)nudBlur.Value;
+            e.Distance = (int)nudDistance.Value;
 
             e.Render(gr, path);
         }

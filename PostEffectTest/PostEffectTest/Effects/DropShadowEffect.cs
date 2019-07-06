@@ -12,14 +12,14 @@ namespace PostEffectTest.Effects
     public class DropShadowEffect : BaseEffect
     {
         public Color Color { get; set; } = Color.FromArgb(100, Color.Black);
-        public int Size { get; set; } = 5;
+        public int Blur { get; set; } = 5;
         public int Distance { get; set; } = 10;
-        public PointF Direction { get; set; } = new PointF(1, 0.7f);
+        public PointF Direction { get; set; } = new PointF(0.7f, 1);
 
         public override void Render(Graphics gr, GraphicsPath path)
         {
             var state = gr.Save();
-            var padding = Size * 3 + 2;
+            var padding = Blur * 3 + 2;
             var offset = new PointF(Direction.X * Distance, Direction.Y * Distance);
             var rect = path.GetBounds();
             var w = (int)(rect.Width + padding * 2 + 4);
@@ -33,13 +33,13 @@ namespace PostEffectTest.Effects
                 bmpGr.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
                 bmpGr.TranslateTransform(-rect.Location.X + padding, -rect.Location.Y + padding);
-                if (Size > 0)
+                if (Blur > 0)
                 {
                     bmpGr.Clear(Color.Black);
                     bmpGr.FillPath(Color.White.Brush(), path);
 
                     var blur = new GaussianBlurOneChannel(bmp);
-                    using (var bmp2 = blur.Process(Size, Color, Color.Transparent))
+                    using (var bmp2 = blur.Process(Blur, Color, Color.Transparent))
                         gr.DrawImage(bmp2, rect.Location.X - padding + offset.X, rect.Location.Y - padding + offset.Y);
                 } else
                 {

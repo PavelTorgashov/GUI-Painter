@@ -33,12 +33,13 @@
             this.nudOpacity = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.nudSize = new System.Windows.Forms.NumericUpDown();
+            this.nudBlur = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.nudDistance = new System.Windows.Forms.NumericUpDown();
             this.cbEffect = new System.Windows.Forms.ComboBox();
+            this.cbOuter = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudOpacity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBlur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,22 +92,22 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(318, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 17);
+            this.label2.Size = new System.Drawing.Size(37, 17);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Size:";
+            this.label2.Text = "Blur:";
             // 
-            // nudSize
+            // nudBlur
             // 
-            this.nudSize.Location = new System.Drawing.Point(363, 14);
-            this.nudSize.Name = "nudSize";
-            this.nudSize.Size = new System.Drawing.Size(61, 22);
-            this.nudSize.TabIndex = 4;
-            this.nudSize.Value = new decimal(new int[] {
+            this.nudBlur.Location = new System.Drawing.Point(363, 14);
+            this.nudBlur.Name = "nudBlur";
+            this.nudBlur.Size = new System.Drawing.Size(61, 22);
+            this.nudBlur.TabIndex = 4;
+            this.nudBlur.Value = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.nudSize.ValueChanged += new System.EventHandler(this.cbChess_CheckedChanged);
+            this.nudBlur.ValueChanged += new System.EventHandler(this.cbChess_CheckedChanged);
             // 
             // label3
             // 
@@ -136,9 +137,20 @@
             this.cbEffect.FormattingEnabled = true;
             this.cbEffect.Location = new System.Drawing.Point(12, 54);
             this.cbEffect.Name = "cbEffect";
-            this.cbEffect.Size = new System.Drawing.Size(250, 24);
+            this.cbEffect.Size = new System.Drawing.Size(171, 24);
             this.cbEffect.TabIndex = 8;
             this.cbEffect.SelectedIndexChanged += new System.EventHandler(this.cbChess_CheckedChanged);
+            // 
+            // cbOuter
+            // 
+            this.cbOuter.AutoSize = true;
+            this.cbOuter.Location = new System.Drawing.Point(592, 15);
+            this.cbOuter.Name = "cbOuter";
+            this.cbOuter.Size = new System.Drawing.Size(66, 21);
+            this.cbOuter.TabIndex = 9;
+            this.cbOuter.Text = "Outer";
+            this.cbOuter.UseVisualStyleBackColor = true;
+            this.cbOuter.CheckedChanged += new System.EventHandler(this.cbChess_CheckedChanged);
             // 
             // Form1
             // 
@@ -146,11 +158,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(709, 498);
+            this.Controls.Add(this.cbOuter);
             this.Controls.Add(this.cbEffect);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.nudDistance);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.nudSize);
+            this.Controls.Add(this.nudBlur);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nudOpacity);
             this.Controls.Add(this.lbColorPicker);
@@ -158,7 +171,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.nudOpacity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBlur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -172,10 +185,11 @@
         private System.Windows.Forms.NumericUpDown nudOpacity;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown nudSize;
+        private System.Windows.Forms.NumericUpDown nudBlur;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nudDistance;
         private System.Windows.Forms.ComboBox cbEffect;
+        private System.Windows.Forms.CheckBox cbOuter;
     }
 }
 
