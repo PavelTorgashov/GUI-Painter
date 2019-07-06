@@ -16,6 +16,8 @@ namespace PostEffectTest.Effects
         public int Distance { get; set; } = 10;
         public PointF Direction { get; set; } = new PointF(0.7f, 1);
 
+        public override int Priority => -10;
+
         public override void Render(Graphics gr, GraphicsPath path)
         {
             var state = gr.Save();

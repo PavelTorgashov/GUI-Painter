@@ -21,7 +21,7 @@ namespace PostEffectTest
         {
             InitializeComponent();
 
-            cbEffect.DataSource = new string[] { "DropShadowEffect", "GlowEffect", "BevelEffect" };
+            cbEffect.DataSource = new string[] { "DropShadowEffect", "GlowEffect", "BevelEffect", "EmbossEffect" };
 
             var pos = new Point(200, 200);
             var size = new Size(300, 200);
@@ -31,6 +31,12 @@ namespace PostEffectTest
               new Point(pos.X + size.Width, pos.Y + size.Height),
               new Point(pos.X, pos.Y + size.Height)});
             path.CloseFigure();
+            //path.AddLines(new Point[]
+            //{ new Point(pos.X + size.Width, pos.Y),
+            //  new Point(pos.X + size.Width + size.Width, pos.Y),
+            //  new Point(pos.X + size.Width + size.Width, pos.Y + size.Height),
+            //  new Point(pos.X + size.Width, pos.Y + size.Height)});
+            //path.CloseFigure();
 
             path.AddEllipse(500, 500, 100, 100);
 
@@ -51,11 +57,12 @@ namespace PostEffectTest
             if (effectName == "DropShadowEffect")
                 RenderShadowEffect(e.Graphics, path);
 
-            using (var brush = new SolidBrush(Color.FromArgb(255, Color.Red)))
-                e.Graphics.FillPath(brush, path);
+            new FillEffect() { Color = Color.Gray }.Render(e.Graphics, path);
 
             if (effectName == "BevelEffect")
                 RenderBevelEffect(e.Graphics, path);
+            if (effectName == "EmbossEffect")
+                RenderEmbossEffect(e.Graphics, path);
             if (effectName == "GlowEffect")
                 RenderGlowEffect(e.Graphics, path);
         }
@@ -89,6 +96,17 @@ namespace PostEffectTest
             e.Color = Color.FromArgb(opactity, lbColorPicker.BackColor);
             e.ColorShadow = Color.FromArgb(GraphicsHelper.Saturate(opactity) , Color.Black);
             e.Blur = (int)nudBlur.Value;
+            e.Distance = (int)nudDistance.Value;
+
+            e.Render(gr, path);
+        }
+
+        private void RenderEmbossEffect(Graphics gr, GraphicsPath path)
+        {
+            var e = new EmbossEffect() { };
+            var opactity = (byte)(255f * (float)nudOpacity.Value / 100f);
+            e.Color = lbColorPicker.BackColor;
+            e.ColorShadow = Color.Black;
             e.Distance = (int)nudDistance.Value;
 
             e.Render(gr, path);

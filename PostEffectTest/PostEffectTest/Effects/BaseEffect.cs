@@ -13,8 +13,7 @@ namespace PostEffectTest
     /// </summary>
     public abstract class BaseEffect
     {
-        public int Priority { get; protected set; } = -1;
-
+        public abstract int Priority { get; }
         public abstract void Render(Graphics gr, GraphicsPath path);
     }
 }

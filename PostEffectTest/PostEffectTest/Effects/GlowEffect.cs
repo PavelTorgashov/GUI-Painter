@@ -11,6 +11,8 @@ namespace PostEffectTest.Effects
         public int Blur { get; set; } = 5;
         public bool OuterGlow { get; set; } = false;
 
+        public override int Priority => 20;
+
         public override void Render(Graphics gr, GraphicsPath path)
         {
             var state = gr.Save();
