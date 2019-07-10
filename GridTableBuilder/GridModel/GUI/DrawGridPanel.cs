@@ -38,7 +38,11 @@ namespace GridTableBuilder.Controls
             pe.Graphics.PixelOffsetMode = PixelOffsetMode.HighSpeed;
 
             var ps = new DrawParams();
-            grid.AllElements.OfType<IDrawable>().OrderBy(e => e.Priority).ToList().ForEach(e => e.Draw(pe.Graphics, ps));
+            foreach (var elem in grid.AllElements.OfType<IDrawable>().OrderBy(e => e.Priority))
+            {
+                ps.IsSelected = Selected == elem;
+                elem.Draw(pe.Graphics, ps);
+            }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -56,9 +60,23 @@ namespace GridTableBuilder.Controls
             }
         }
 
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (Selected is Edge)
+                {
+                    (Selected as Edge).TryRemove();
+                    Invalidate(false);
+                }
+            }
+            base.OnKeyDown(e);
+        }
+
         private void Mouse_MouseUp(MouseEventArgs e)
         {
             dragger = null;
+            Invalidate(false);
         }
 
         private void Mouse_MouseMove(MouseEventArgs e)
@@ -69,7 +87,7 @@ namespace GridTableBuilder.Controls
         private void Mouse_MouseDown(MouseEventArgs e)
         {
             //get selectable
-            var newSelectable = grid.AllElements.OfType<ISelectable>().OrderBy(n => n.Priority).FirstOrDefault();
+            var newSelectable = grid.AllElements.OfType<ISelectable>().OrderBy(n => n.Priority).Where(n=>n.IsHit(e.Location)).FirstOrDefault();
 
             //select
             if (newSelectable != Selected)

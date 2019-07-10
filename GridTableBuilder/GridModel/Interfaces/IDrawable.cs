@@ -15,6 +15,6 @@ namespace GridTableBuilder.GridModel
 
     public class DrawParams
     {
-
+        public bool IsSelected;
     }
 }

@@ -27,7 +27,15 @@ namespace GridTableBuilder.GridModel.GUI
         public void Start(MouseController mc)
         {
             this.mc = mc;
+
             //calc min and max
+            var points = line.Grid.Nodes.Select(n => line.IsHorizontal ? n.OriginalLocation.Y : n.OriginalLocation.X).OrderBy(x => x).ToArray();
+            const int padding = 3;
+            minLocation = points.Where(x => x < line.Location).LastOrDefault() + padding;
+            maxLocation = points.Where(x => x > line.Location).FirstOrDefault() - padding;
+            if (maxLocation == -padding)
+                maxLocation = 10000;
+
             //get my node list
             nodes = new LinkedList<Node>(line.Grid.Nodes.Where(n => line.IsHorizontal ? n.OriginalLocation.Y == line.Location : n.OriginalLocation.X == line.Location)).ToList();
             mc.MouseMove += Mc_MouseMove;
@@ -41,11 +49,24 @@ namespace GridTableBuilder.GridModel.GUI
 
         private void Mc_MouseMove(MouseEventArgs e)
         {
+            var p = e.Location;
+
             foreach (var node in nodes)
+            {
+                var loc = node.OriginalLocation;
                 if (line.IsHorizontal)
-                    node.OriginalLocation = new Point(node.OriginalLocation.X, e.Location.Y);
-                else
-                    node.OriginalLocation = new Point(e.Location.X, node.OriginalLocation.Y);
+                {
+                    if (p.Y < minLocation) p.Y = minLocation;
+                    if (p.Y > maxLocation) p.Y = maxLocation;
+                    loc.Y = p.Y;
+                } else
+                {
+                    if (p.X < minLocation) p.X = minLocation;
+                    if (p.X > maxLocation) p.X = maxLocation;
+                    loc.X = p.X;
+                }
+                node.OriginalLocation = loc;
+            }
         }
 
         public void Dispose()

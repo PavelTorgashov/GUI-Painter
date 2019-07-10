@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
 
 namespace GridTableBuilder.GridModel
 {
@@ -8,6 +10,7 @@ namespace GridTableBuilder.GridModel
         public Node Node1;
         public Node Node2;
         public Grid Grid => Node1.Grid;
+        public bool IsHorisontal => Node1.OriginalLocation.Y == Node2.OriginalLocation.Y;
 
         public Edge(Node node1, Node node2)
         {
@@ -18,6 +21,39 @@ namespace GridTableBuilder.GridModel
             node2.Edges.Add(this);
         }
 
+        GraphicsPath Path
+        {
+            get
+            {
+                var path = new GraphicsPath();
+                path.AddLine(Node1.Location, Node2.Location);
+                return path;
+            }
+        }
+
+        public Node[] Nodes => new Node[] { Node1, Node2 };
+
+        public bool TryRemove()
+        {
+            if (Grid.Nodes.All(n => n.Edges.Count <= 2))//single cyclomatic graph
+                return false;
+
+            //remove edge
+            Node1.Edges.Remove(this);
+            Node2.Edges.Remove(this);
+
+            //remove transit nodes
+            Grid.RemoveTransitNodes();
+
+            //remove "free" edges
+            Grid.RemoveFreeEdges();
+
+            //remove empty nodes
+            Grid.RemoveEmptyNodes();
+
+            return true;
+        }
+
         #region IDrawable
 
         int IDrawable.Priority => 1;
@@ -26,8 +62,11 @@ namespace GridTableBuilder.GridModel
         {
             using (var pen = new Pen(Color.Black, 1))
             {
-                pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.RoundAnchor;
-                gr.DrawLine(pen, Node1.Location, Node2.Location);
+                if (ps.IsSelected)
+                    pen.Color = Color.Blue;
+
+                pen.StartCap = pen.EndCap = LineCap.RoundAnchor;
+                gr.DrawPath(pen, Path);
             }
         }
 
@@ -36,6 +75,15 @@ namespace GridTableBuilder.GridModel
         #region ISelectable
 
         int ISelectable.Priority => 1;
+
+        bool ISelectable.IsHit(Point mousePos)
+        {
+            const int padding = 3;
+            using (var pen = new Pen(Color.Black, padding * 2))
+            {
+                return Path.IsOutlineVisible(mousePos, pen);
+            }
+        }
 
         #endregion
     }
