@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 
@@ -42,16 +43,22 @@ namespace GridTableBuilder.GridModel
             Node1.Edges.Remove(this);
             Node2.Edges.Remove(this);
 
-            //remove transit nodes
-            Grid.RemoveTransitNodes();
-
-            //remove "free" edges
-            Grid.RemoveFreeEdges();
-
-            //remove empty nodes
-            Grid.RemoveEmptyNodes();
+            //normalize
+            Grid.NormalizeAfterEdgeRemoving();
 
             return true;
+        }
+
+        public bool Contains(Point p)
+        {
+            if (IsHorisontal)
+                return p.Y == Node1.OriginalLocation.Y
+                    && p.X >= Math.Min(Node1.OriginalLocation.X, Node2.OriginalLocation.X)
+                    && p.X <= Math.Max(Node1.OriginalLocation.X, Node2.OriginalLocation.X);
+            else
+                return p.X == Node1.OriginalLocation.X
+                    && p.Y >= Math.Min(Node1.OriginalLocation.Y, Node2.OriginalLocation.Y)
+                    && p.Y <= Math.Max(Node1.OriginalLocation.Y, Node2.OriginalLocation.Y);
         }
 
         #region IDrawable

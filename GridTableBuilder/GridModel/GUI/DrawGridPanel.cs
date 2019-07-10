@@ -1,4 +1,5 @@
 ﻿using GridTableBuilder.GridModel;
+using GridTableBuilder.GridModel.GUI;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -17,6 +18,7 @@ namespace GridTableBuilder.Controls
         MouseController mouse;
         Grid grid = new Grid();
         IDragger dragger;
+        EdgeDrawer edgeDrawer;
 
         public DrawGridPanel()
         {
@@ -43,11 +45,17 @@ namespace GridTableBuilder.Controls
                 ps.IsSelected = Selected == elem;
                 elem.Draw(pe.Graphics, ps);
             }
+
+            if (edgeDrawer != null)
+                edgeDrawer.Draw(pe.Graphics, ps);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
+            if (edgeDrawer != null)
+                return;
+
             if (dragger == null)
             {
                 //get draggers
@@ -76,6 +84,7 @@ namespace GridTableBuilder.Controls
         private void Mouse_MouseUp(MouseEventArgs e)
         {
             dragger = null;
+            edgeDrawer = null;
             Invalidate(false);
         }
 
@@ -102,6 +111,20 @@ namespace GridTableBuilder.Controls
             //start drag
             if (dragger != null)
                 dragger.Start(mouse);
+
+            //start draw edge
+            if (Selected == null && dragger == null)
+            {
+                edgeDrawer = new EdgeDrawer();
+                edgeDrawer.Start(mouse, grid);
+            }else
+            {
+                edgeDrawer?.Dispose();
+                edgeDrawer = null;
+            }
+
+            //
+            Invalidate();
         }
     }
 }

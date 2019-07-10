@@ -49,6 +49,7 @@
     <Compile Include="GridModel\GUI\DrawGridPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="GridModel\GUI\EdgeDrawer.cs" />
     <Compile Include="GridModel\GUI\MouseController.cs" />
     <Compile Include="GridModel\Edge.cs" />
     <Compile Include="GridModel\Grid.cs" />
@@ -59,20 +60,12 @@
     <Compile Include="GridModel\Interfaces\ISelectable.cs" />
     <Compile Include="GridModel\Node.cs" />
     <Compile Include="GridModel\TrackLine.cs" />
-    <Compile Include="GridModel_old\Edge.cs" />
-    <Compile Include="GridModel_old\Grid.cs" />
-    <Compile Include="GridModel_old\GridDraw.cs" />
-    <Compile Include="GridModel_old\GridErase.cs" />
-    <Compile Include="GridModel_old\GridMove.cs" />
-    <Compile Include="GridModel_old\Helper.cs" />
-    <Compile Include="GridModel_old\Line.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GridModel_old\PointNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">

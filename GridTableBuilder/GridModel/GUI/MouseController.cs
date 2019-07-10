@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace GridTableBuilder.Controls
     {
         Control parentControl;
         bool isDown;
+        public Point MouseDownPoint;
 
         public event Action<MouseEventArgs> MouseDown = delegate { };
         public event Action<MouseEventArgs> MouseMove = delegate { };
@@ -50,6 +52,7 @@ namespace GridTableBuilder.Controls
                 if (isDown)
                     MouseUp(e);
                 isDown = true;
+                MouseDownPoint = e.Location;
                 MouseDown(e);
             }
         }

@@ -32,9 +32,105 @@ namespace GridTableBuilder.GridModel
             }
         }
 
-        public void RemoveTransitNodes()
+        #region Add edges
+
+        public void AddEdges(Point from, Point to)
+        {
+            if (from.X == to.X)
+                AddVertEdges(from, to);
+            else
+                AddHorizEdges(from, to);
+        }
+
+        private void AddVertEdges(Point from, Point to)
+        {
+            var fromY = Math.Min(from.Y, to.Y);
+            var toY = Math.Max(from.Y, to.Y);
+
+            //find intersected edges
+            var edges = AllElements.OfType<Edge>().Where(
+                    e => e.IsHorisontal
+                    && e.Node1.OriginalLocation.Y >= fromY
+                    && e.Node1.OriginalLocation.Y <= toY
+                    && e.Contains(new Point(from.X, e.Node1.OriginalLocation.Y))
+                ).OrderBy(e => e.Node1.OriginalLocation.Y).ToArray();
+            if (edges.Length < 2)
+                return;
+
+            Node prevNode = new Node(this, new Point(from.X, edges[0].Node1.OriginalLocation.Y));
+            DivideEdge(edges[0], prevNode);
+            for (int i = 1; i < edges.Length; i++)
+            {
+                Node node = new Node(this, new Point(from.X, edges[i].Node1.OriginalLocation.Y));
+                DivideEdge(edges[i], node);
+                new Edge(prevNode, node);
+                prevNode = node;
+            }
+        }
+
+        private void AddHorizEdges(Point from, Point to)
+        {
+            var fromX = Math.Min(from.X, to.X);
+            var toX = Math.Max(from.X, to.X);
+
+            //find intersected edges
+            var edges = AllElements.OfType<Edge>().Where(
+                    e => !e.IsHorisontal 
+                    && e.Node1.OriginalLocation.X >= fromX 
+                    && e.Node1.OriginalLocation.X <= toX 
+                    && e.Contains(new Point(e.Node1.OriginalLocation.X, from.Y))
+                ).OrderBy(e => e.Node1.OriginalLocation.X).ToArray();
+            if (edges.Length < 2)
+                return;
+
+            Node prevNode = new Node(this, new Point(edges[0].Node1.OriginalLocation.X, from.Y));
+            DivideEdge(edges[0], prevNode);
+            for (int i = 1; i < edges.Length; i++)
+            {
+                Node node = new Node(this, new Point(edges[i].Node1.OriginalLocation.X, from.Y));
+                DivideEdge(edges[i], node);
+                new Edge(prevNode, node);
+                prevNode = node;
+            }
+        }
+
+        void DivideEdge(Edge edge, Node node)
+        {
+            edge.Node1.Edges.Remove(edge);
+            edge.Node2.Edges.Remove(edge);
+            new Edge(edge.Node1, node);
+            new Edge(edge.Node2, node);
+        }
+
+        #endregion
+
+        #region Normalize grid after edge removing
+
+        public void NormalizeAfterEdgeRemoving()
+        {
+            var removed = false;
+
+            do
+            {
+                removed = false;
+
+                //remove transit nodes
+                if (RemoveTransitNodes())
+                    removed = true;
+
+                //remove "free" edges
+                if (RemoveFreeEdges())
+                    removed = true;
+            } while (removed);
+
+            //remove nodes w/o edges
+            RemoveEmptyNodes();
+        }
+
+        bool RemoveTransitNodes()
         {
             bool removed = false;
+            bool result = false;
 
             do
             {
@@ -53,21 +149,25 @@ namespace GridTableBuilder.GridModel
                         new Edge(n1, n2);
                         Nodes.Remove(n);
                         removed = true;
+                        result = true;
                     }
                 }
             } while (removed);
+
+            return result;
         }
 
-        public void RemoveEmptyNodes()
+        void RemoveEmptyNodes()
         {
             foreach (var n in Nodes.ToArray())
             if (n.Edges.Count == 0)
                 Nodes.Remove(n);
         }
 
-        public void RemoveFreeEdges()
+        bool RemoveFreeEdges()
         {
             bool removed = false;
+            bool result = false;
 
             do
             {
@@ -80,38 +180,26 @@ namespace GridTableBuilder.GridModel
                         e.Node1.Edges.Remove(e);
                         e.Node2.Edges.Remove(e);
                         removed = true;
+                        result = true;
                     }
             } while (removed);
+
+            return result;
         }
+
+        #endregion
 
         public Grid()
         {
-            //var n1 = new Node(this, new Point(100, 100));
-            //var n2 = new Node(this, new Point(300, 100));
-            //var n3 = new Node(this, new Point(300, 200));
-            //var n4 = new Node(this, new Point(100, 200));
-
-            //new Edge(n1, n2);
-            //new Edge(n2, n3);
-            //new Edge(n3, n4);
-            //new Edge(n4, n1);
-
             var n1 = new Node(this, new Point(100, 100));
             var n2 = new Node(this, new Point(300, 100));
             var n3 = new Node(this, new Point(300, 200));
             var n4 = new Node(this, new Point(100, 200));
 
-            var n5 = new Node(this, new Point(150, 100));
-            var n6 = new Node(this, new Point(150, 200));
-
-            new Edge(n1, n5);
-            new Edge(n5, n2);
+            new Edge(n1, n2);
             new Edge(n2, n3);
-            new Edge(n3, n6);
-            new Edge(n6, n4);
+            new Edge(n3, n4);
             new Edge(n4, n1);
-
-            new Edge(n5, n6);
         }
     }
 }
