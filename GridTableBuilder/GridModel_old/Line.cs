@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace GridTableBuilder
+namespace Grid_Model_old
 {
     public struct Line
     {

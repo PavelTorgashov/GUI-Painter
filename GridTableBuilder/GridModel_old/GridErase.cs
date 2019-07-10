@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace GridTableBuilder
+namespace Grid_Model_old
 {
     /// <summary>
     /// Часть класса, отвечающая за удаление рёбер и узлов
@@ -67,7 +67,7 @@ namespace GridTableBuilder
             // рисуем рёбра для удаления
             foreach (var ed in edgesToDelete)
                 using (var pen = new Pen(Color.FromArgb(100, Color.Red), 3))
-                    graphics.DrawLine(pen, ed.Node1.Offset, ed.Node2.Offset);
+                    graphics.DrawLine(pen, ed.Node1.Location, ed.Node2.Location);
 
         }
 
@@ -83,16 +83,16 @@ namespace GridTableBuilder
             {
                 if (edge.IsVertical) // если ребро вертикальное
                 {
-                    var x = edge.Node1.Offset.X;
+                    var x = edge.Node1.Location.X;
                     if (x >= ribberRect.X && x < ribberRect.X + ribberRect.Width &&
-                        edge.Node1.Offset.Y <= ribberRect.Y + ribberRect.Height && edge.Node2.Offset.Y >= ribberRect.Y)
+                        edge.Node1.Location.Y <= ribberRect.Y + ribberRect.Height && edge.Node2.Location.Y >= ribberRect.Y)
                         list.Add(edge);
                 }
                 else if (edge.IsHorizontal) // если ребро горизонтальное
                 {
-                    var y = edge.Node1.Offset.Y;
+                    var y = edge.Node1.Location.Y;
                     if (y >= ribberRect.Y && y < ribberRect.Y + ribberRect.Height &&
-                        edge.Node1.Offset.X <= ribberRect.X + ribberRect.Width && edge.Node2.Offset.X >= ribberRect.X)
+                        edge.Node1.Location.X <= ribberRect.X + ribberRect.Width && edge.Node2.Location.X >= ribberRect.X)
                         list.Add(edge);
                 }
             }
@@ -140,10 +140,10 @@ namespace GridTableBuilder
                     if (pn.Edges.Count == 0) continue;
                     var edge = pn.Edges[0];
                     // "висящее" ребро на главном периметре не должно удаляться
-                    var masterEdge  = (edge.IsHorizontal && (edge.Node1.Offset.Y == Area.Top && edge.Node2.Offset.Y == Area.Top ||
-                                                             edge.Node1.Offset.Y == Area.Bottom && edge.Node2.Offset.Y == Area.Bottom)) ||
-                                      (edge.IsVertical && (edge.Node1.Offset.X == Area.Left && edge.Node2.Offset.X == Area.Left || 
-                                                           edge.Node1.Offset.X == Area.Right && edge.Node2.Offset.X == Area.Right));
+                    var masterEdge  = (edge.IsHorizontal && (edge.Node1.Location.Y == Area.Top && edge.Node2.Location.Y == Area.Top ||
+                                                             edge.Node1.Location.Y == Area.Bottom && edge.Node2.Location.Y == Area.Bottom)) ||
+                                      (edge.IsVertical && (edge.Node1.Location.X == Area.Left && edge.Node2.Location.X == Area.Left || 
+                                                           edge.Node1.Location.X == Area.Right && edge.Node2.Location.X == Area.Right));
                     if (masterEdge) goto exit;
                     var pnOther = edge.Node1 == pn ? edge.Node2 : edge.Node1;
                     pnOther.Edges.Remove(edge);

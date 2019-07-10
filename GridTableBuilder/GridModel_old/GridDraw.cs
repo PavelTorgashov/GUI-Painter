@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 
-namespace GridTableBuilder
+namespace Grid_Model_old
 {
     /// <summary>
     /// Часть класса, отвечающая за рисование таблицы
@@ -57,7 +57,7 @@ namespace GridTableBuilder
                 if (!splitLine.IsEmpty)
                 {
                     // добавляем новые узлы или присоединяемся к существующим
-                    var pn1 = Nodes.FirstOrDefault(pn => pn.Offset == splitLine.Point1);
+                    var pn1 = Nodes.FirstOrDefault(pn => pn.Location == splitLine.Point1);
                     if (pn1 == null)
                     {
                         pn1 = new PointNode(splitLine.Point1) { Index = pointCount++ };
@@ -65,7 +65,7 @@ namespace GridTableBuilder
                         // разбиваем ребро на два при добавлении узла
                         SplitEdge(pn1);
                     }
-                    var pn2 = Nodes.FirstOrDefault(pn => pn.Offset == splitLine.Point2);
+                    var pn2 = Nodes.FirstOrDefault(pn => pn.Location == splitLine.Point2);
                     if (pn2 == null)
                     {
                         pn2 = new PointNode(splitLine.Point2) { Index = pointCount++ };
@@ -110,7 +110,7 @@ namespace GridTableBuilder
                 point.Y > Area.Top + Helper.Epsilon && point.Y < Area.Bottom + Helper.Epsilon &&
                 GetNearEdge(point).IsEmpty)
             {
-                var list = Edges.Where(edge => edge.IsVertical && edge.Node1.Offset.X == Area.Left).ToList();
+                var list = Edges.Where(edge => edge.IsVertical && edge.Node1.Location.X == Area.Left).ToList();
                 var line = new Line() { Point1 = new Point(Area.Left, Area.Top), Point2 = new Point(Area.Left, Area.Bottom) };
                 var full = GetEdgeLine(list, line, point);
                 if (full.IsEmpty) return;
@@ -126,7 +126,7 @@ namespace GridTableBuilder
                 point.Y > Area.Top + Helper.Epsilon && point.Y < Area.Bottom + Helper.Epsilon &&
                 GetNearEdge(point).IsEmpty)
             {
-                var list = Edges.Where(edge => edge.IsVertical && edge.Node1.Offset.X == Area.Right).ToList();
+                var list = Edges.Where(edge => edge.IsVertical && edge.Node1.Location.X == Area.Right).ToList();
                 var line = new Line() { Point1 = new Point(Area.Right, Area.Top), Point2 = new Point(Area.Right, Area.Bottom) };
                 var full = GetEdgeLine(list, line, point);
                 if (full.IsEmpty) return;
@@ -142,7 +142,7 @@ namespace GridTableBuilder
                 point.X > Area.Left + Helper.Epsilon && point.X < Area.Right + Helper.Epsilon &&
                 GetNearEdge(point).IsEmpty)
             {
-                var list = Edges.Where(edge => edge.IsHorizontal && edge.Node1.Offset.Y == Area.Top).ToList();
+                var list = Edges.Where(edge => edge.IsHorizontal && edge.Node1.Location.Y == Area.Top).ToList();
                 var line = new Line() { Point1 = new Point(Area.Left, Area.Top), Point2 = new Point(Area.Right, Area.Top) };
                 var full = GetEdgeLine(list, line, point);
                 if (full.IsEmpty) return;
@@ -158,7 +158,7 @@ namespace GridTableBuilder
                 point.X > Area.Left + Helper.Epsilon && point.X < Area.Right + Helper.Epsilon &&
                 GetNearEdge(point).IsEmpty)
             {
-                var list = Edges.Where(edge => edge.IsHorizontal && edge.Node1.Offset.Y == Area.Bottom).ToList();
+                var list = Edges.Where(edge => edge.IsHorizontal && edge.Node1.Location.Y == Area.Bottom).ToList();
                 var line = new Line() { Point1 = new Point(Area.X, Area.Bottom), Point2 = new Point(Area.Right, Area.Bottom) };
                 var full = GetEdgeLine(list, line, point);
                 if (full.IsEmpty) return;
@@ -184,9 +184,9 @@ namespace GridTableBuilder
                 foreach (var edge in Edges)
                 {
                     grp.Reset();
-                    grp.AddLine(edge.Node1.Offset, edge.Node2.Offset);
+                    grp.AddLine(edge.Node1.Location, edge.Node2.Location);
                     if (grp.IsOutlineVisible(location, pen))
-                        return new Line() { Point1 = edge.Node1.Offset, Point2 = edge.Node2.Offset };
+                        return new Line() { Point1 = edge.Node1.Location, Point2 = edge.Node2.Location };
                 }
             }
             return Line.Empty;
@@ -220,7 +220,7 @@ namespace GridTableBuilder
                     foreach (var edge in list)
                     {
                         grp.Reset();
-                        grp.AddLine(edge.Node1.Offset, edge.Node2.Offset);
+                        grp.AddLine(edge.Node1.Location, edge.Node2.Location);
                         var rect = Rectangle.Ceiling(grp.GetBounds());
                         if (rect.Width == 0)
                         {
@@ -260,14 +260,14 @@ namespace GridTableBuilder
             var lastY = Math.Max(y1, y2);
             // смотрим горизонтальные рёбра
             var horizontalEdges = Edges.Where(edge => edge.IsHorizontal)
-                                       .Where(edge => edge.Node1.Offset.X < x && edge.Node2.Offset.X > x).ToList();
+                                       .Where(edge => edge.Node1.Location.X < x && edge.Node2.Location.X > x).ToList();
             if (horizontalEdges.Count < 2)
                 return Line.Empty;
-            var edgeA = horizontalEdges.OrderBy(edge => Math.Abs(edge.Node1.Offset.Y - firstY)).First();
-            var edgeB = horizontalEdges.OrderBy(edge => Math.Abs(edge.Node1.Offset.Y - lastY)).First();
+            var edgeA = horizontalEdges.OrderBy(edge => Math.Abs(edge.Node1.Location.Y - firstY)).First();
+            var edgeB = horizontalEdges.OrderBy(edge => Math.Abs(edge.Node1.Location.Y - lastY)).First();
             return edgeA == edgeB 
                 ? Line.Empty
-                : new Line() { Point1 = new Point(x, edgeA.Node1.Offset.Y), Point2 = new Point(x, edgeB.Node2.Offset.Y) };
+                : new Line() { Point1 = new Point(x, edgeA.Node1.Location.Y), Point2 = new Point(x, edgeB.Node2.Location.Y) };
         }
 
         /// <summary>
@@ -283,14 +283,14 @@ namespace GridTableBuilder
             var lastX = Math.Max(x1, x2);
             // смотрим вертикальные рёбра
             var verticalEdges = Edges.Where(edge => edge.IsVertical)
-                                     .Where(edge => edge.Node1.Offset.Y < y && edge.Node2.Offset.Y > y).ToList();
+                                     .Where(edge => edge.Node1.Location.Y < y && edge.Node2.Location.Y > y).ToList();
             if (verticalEdges.Count < 2)
                 return Line.Empty;
-            var edgeA = verticalEdges.OrderBy(edge => Math.Abs(edge.Node1.Offset.X - firstX)).First();
-            var edgeB = verticalEdges.OrderBy(edge => Math.Abs(edge.Node1.Offset.X - lastX)).First();
+            var edgeA = verticalEdges.OrderBy(edge => Math.Abs(edge.Node1.Location.X - firstX)).First();
+            var edgeB = verticalEdges.OrderBy(edge => Math.Abs(edge.Node1.Location.X - lastX)).First();
             return edgeA == edgeB 
                 ? Line.Empty
-                : new Line() { Point1 = new Point(edgeA.Node1.Offset.X, y), Point2 = new Point(edgeB.Node2.Offset.X, y) };
+                : new Line() { Point1 = new Point(edgeA.Node1.Location.X, y), Point2 = new Point(edgeB.Node2.Location.X, y) };
         }
 
         /// <summary>
@@ -300,20 +300,20 @@ namespace GridTableBuilder
         /// <param name="edge">Ссылка на новое ребро</param>
         private void AddCrossNodesByEdge(Edge edge)
         {
-            var verticals = GetCrossEdges(edge, Edges.Where(e => edge.IsHorizontal && e.Node1.Offset.X == e.Node2.Offset.X &&
-                                             e.Node1.Offset.X != edge.Node1.Offset.X && e.Node2.Offset.X != edge.Node2.Offset.X).ToList());
-            var horizontals = GetCrossEdges(edge, Edges.Where(e => edge.IsVertical && e.Node1.Offset.Y == e.Node2.Offset.Y &&
-                                               e.Node1.Offset.Y != edge.Node1.Offset.Y && e.Node2.Offset.Y != edge.Node2.Offset.Y).ToList());
+            var verticals = GetCrossEdges(edge, Edges.Where(e => edge.IsHorizontal && e.Node1.Location.X == e.Node2.Location.X &&
+                                             e.Node1.Location.X != edge.Node1.Location.X && e.Node2.Location.X != edge.Node2.Location.X).ToList());
+            var horizontals = GetCrossEdges(edge, Edges.Where(e => edge.IsVertical && e.Node1.Location.Y == e.Node2.Location.Y &&
+                                               e.Node1.Location.Y != edge.Node1.Location.Y && e.Node2.Location.Y != edge.Node2.Location.Y).ToList());
             var points = new List<PointNode>();
             if (verticals.Count > 0)
             {
                 foreach (var e in verticals)
-                    points.Add(new PointNode(new Point(e.Node1.Offset.X, edge.Node1.Offset.Y)));
+                    points.Add(new PointNode(new Point(e.Node1.Location.X, edge.Node1.Location.Y)));
             }
             else if (horizontals.Count > 0)
             {
                 foreach (var e in horizontals)
-                    points.Add(new PointNode(new Point(edge.Node1.Offset.X, e.Node1.Offset.Y)));
+                    points.Add(new PointNode(new Point(edge.Node1.Location.X, e.Node1.Location.Y)));
             }
             // добавляем новое ребро
             Edges.Add(edge);
@@ -341,7 +341,7 @@ namespace GridTableBuilder
             {
                 using (var grp = new GraphicsPath())
                 {
-                    grp.AddLine(edge.Node1.Offset, edge.Node2.Offset);
+                    grp.AddLine(edge.Node1.Location, edge.Node2.Location);
                     r1 = grp.GetBounds(mx, pen);
                 }
                 using (var grp = new GraphicsPath())
@@ -349,7 +349,7 @@ namespace GridTableBuilder
                     foreach (var e in list)
                     {
                         grp.Reset();
-                        grp.AddLine(e.Node1.Offset, e.Node2.Offset);
+                        grp.AddLine(e.Node1.Location, e.Node2.Location);
                         var rect = grp.GetBounds(mx, pen);
                         if (rect.IntersectsWith(r1))
                             result.Add(e);
@@ -365,10 +365,10 @@ namespace GridTableBuilder
         /// <param name="pn">Ссылка на новый узел</param>
         private void SplitEdge(PointNode pn)
         {
-            var verticals = Edges.Where(edge => edge.IsVertical && pn.Offset.X == edge.Node1.Offset.X &&
-                                        pn.Offset.Y >= edge.Node1.Offset.Y && pn.Offset.Y <= edge.Node2.Offset.Y).ToList();
-            var horizontals = Edges.Where(edge => edge.IsHorizontal && pn.Offset.Y == edge.Node1.Offset.Y &&
-                                          pn.Offset.X >= edge.Node1.Offset.X && pn.Offset.X <= edge.Node2.Offset.X).ToList();
+            var verticals = Edges.Where(edge => edge.IsVertical && pn.Location.X == edge.Node1.Location.X &&
+                                        pn.Location.Y >= edge.Node1.Location.Y && pn.Location.Y <= edge.Node2.Location.Y).ToList();
+            var horizontals = Edges.Where(edge => edge.IsHorizontal && pn.Location.Y == edge.Node1.Location.Y &&
+                                          pn.Location.X >= edge.Node1.Location.X && pn.Location.X <= edge.Node2.Location.X).ToList();
             foreach (var edge in verticals.Union(horizontals))
             {
                 // добавляем новые рёбра

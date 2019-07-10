@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace GridTableBuilder
+namespace Grid_Model_old
 {
     [Serializable]
     public enum GridWorkMode
@@ -109,7 +109,7 @@ namespace GridTableBuilder
             // рисуем узловые точки
             foreach (var np in Nodes)
             {
-                var rect = new Rectangle(np.Offset, new Size(8, 8));
+                var rect = new Rectangle(np.Location, new Size(8, 8));
                 rect.Offset(-4, -4);
                 gr.FillEllipse(Brushes.Gray, rect);
                 if (ShowNodeNames)
@@ -123,11 +123,11 @@ namespace GridTableBuilder
             foreach (var ed in Edges)
             {
                 using (var pen = new Pen(Color.Black, 1))
-                    gr.DrawLine(pen, ed.Node1.Offset, ed.Node2.Offset);
+                    gr.DrawLine(pen, ed.Node1.Location, ed.Node2.Location);
                 if (ShowEdgeNames)
                 {
-                    var p = new Point(ed.Node1.Offset.X, ed.Node1.Offset.Y);
-                    p.Offset((ed.Node2.Offset.X - ed.Node1.Offset.X) / 2 - 8, (ed.Node2.Offset.Y - ed.Node1.Offset.Y) / 2 - 12);
+                    var p = new Point(ed.Node1.Location.X, ed.Node1.Location.Y);
+                    p.Offset((ed.Node2.Location.X - ed.Node1.Location.X) / 2 - 8, (ed.Node2.Location.Y - ed.Node1.Location.Y) / 2 - 12);
                     using (var font = new Font("Arial", 8))
                         gr.DrawString($"e{ed.Index}", font, Brushes.Black, p);
                 }

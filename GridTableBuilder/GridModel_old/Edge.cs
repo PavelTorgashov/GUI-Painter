@@ -1,4 +1,4 @@
-﻿namespace GridTableBuilder
+﻿namespace Grid_Model_old
 {
     public class Edge
     {
@@ -9,9 +9,9 @@
 
         public Edge(PointNode pn1, PointNode pn2)
         {
-            if (pn1.Offset.X == pn2.Offset.X)
+            if (pn1.Location.X == pn2.Location.X)
             {
-                if (pn1.Offset.Y < pn2.Offset.Y)
+                if (pn1.Location.Y < pn2.Location.Y)
                 {
                     Node1 = pn1;
                     Node2 = pn2;
@@ -24,7 +24,7 @@
             }
             else
             {
-                if (pn1.Offset.X < pn2.Offset.X)
+                if (pn1.Location.X < pn2.Location.X)
                 {
                     Node1 = pn1;
                     Node2 = pn2;
@@ -39,12 +39,12 @@
 
         public bool IsVertical
         {
-            get { return Node1.Offset.X == Node2.Offset.X; }
+            get { return Node1.Location.X == Node2.Location.X; }
         }
 
         public bool IsHorizontal
         {
-            get { return Node1.Offset.Y == Node2.Offset.Y; }
+            get { return Node1.Location.Y == Node2.Location.Y; }
         }
 
         public bool IsSameOrientation(Edge edge)

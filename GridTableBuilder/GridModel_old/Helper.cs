@@ -1,4 +1,4 @@
-﻿namespace GridTableBuilder
+﻿namespace Grid_Model_old
 {
     public static class Helper
     {

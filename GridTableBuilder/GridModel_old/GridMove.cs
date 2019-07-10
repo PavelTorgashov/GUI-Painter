@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 
-namespace GridTableBuilder
+namespace Grid_Model_old
 {
     /// <summary>
     /// Часть класса, отвечающая за перемещение рёбер и узлов
@@ -71,7 +71,7 @@ namespace GridTableBuilder
                     }
                     foreach (var pn in points)
                     {
-                        pn.Offset = new Point(pn.Offset.X + dx, pn.Offset.Y + dy);
+                        pn.Location = new Point(pn.Location.X + dx, pn.Location.Y + dy);
                     }
 
                     edgesToMove.Clear();
@@ -128,18 +128,18 @@ namespace GridTableBuilder
             }
             if (splitKind == SplitKind.Vertical)
             {
-                var leftPoint = farPoints.Where(pn => pn.Offset.X < origin.X).OrderBy(pn => Math.Abs(pn.Offset.X - origin.X)).FirstOrDefault();
-                var left = leftPoint != null ? leftPoint.Offset.X : Area.Left;
-                var rightPoint = farPoints.Where(pn => pn.Offset.X > origin.X).OrderBy(pn => Math.Abs(pn.Offset.X - origin.X)).FirstOrDefault();
-                var right = rightPoint != null ? rightPoint.Offset.X : Area.Right;
+                var leftPoint = farPoints.Where(pn => pn.Location.X < origin.X).OrderBy(pn => Math.Abs(pn.Location.X - origin.X)).FirstOrDefault();
+                var left = leftPoint != null ? leftPoint.Location.X : Area.Left;
+                var rightPoint = farPoints.Where(pn => pn.Location.X > origin.X).OrderBy(pn => Math.Abs(pn.Location.X - origin.X)).FirstOrDefault();
+                var right = rightPoint != null ? rightPoint.Location.X : Area.Right;
                 rect = new Rectangle(left, Area.Top, right - left, Area.Height);
             }
             else if (splitKind == SplitKind.Horizontal)
             {
-                var topPoint = farPoints.Where(pn => pn.Offset.Y < origin.Y).OrderBy(pn => Math.Abs(pn.Offset.Y - origin.Y)).FirstOrDefault();
-                var top = topPoint != null ? topPoint.Offset.Y : Area.Top;
-                var bottomPoint = farPoints.Where(pn => pn.Offset.Y > origin.Y).OrderBy(pn => Math.Abs(pn.Offset.Y - origin.Y)).FirstOrDefault();
-                var bottom = bottomPoint != null ? bottomPoint.Offset.Y : Area.Bottom;
+                var topPoint = farPoints.Where(pn => pn.Location.Y < origin.Y).OrderBy(pn => Math.Abs(pn.Location.Y - origin.Y)).FirstOrDefault();
+                var top = topPoint != null ? topPoint.Location.Y : Area.Top;
+                var bottomPoint = farPoints.Where(pn => pn.Location.Y > origin.Y).OrderBy(pn => Math.Abs(pn.Location.Y - origin.Y)).FirstOrDefault();
+                var bottom = bottomPoint != null ? bottomPoint.Location.Y : Area.Bottom;
                 rect = new Rectangle(Area.Left, top, Area.Width, bottom - top);
             }
             // дополнительные ограничения
@@ -160,7 +160,7 @@ namespace GridTableBuilder
             using (var grp = new GraphicsPath())
             {
                 foreach (var edge in edges)
-                    grp.AddLine(edge.Node1.Offset, edge.Node2.Offset);
+                    grp.AddLine(edge.Node1.Location, edge.Node2.Location);
                 var rect = Rectangle.Ceiling(grp.GetBounds());
                 return new Line() { Point1 = new Point(rect.Left, rect.Top), Point2 = new Point(rect.Right, rect.Bottom) };
             }
@@ -183,7 +183,7 @@ namespace GridTableBuilder
                 {
                     var edge = item;
                     grp.Reset();
-                    grp.AddLine(edge.Node1.Offset, edge.Node2.Offset);
+                    grp.AddLine(edge.Node1.Location, edge.Node2.Location);
                     if (grp.IsOutlineVisible(location, pen))
                     {
                         var result = new List<Edge>();
@@ -221,7 +221,7 @@ namespace GridTableBuilder
         {
             if (Area.IsEmpty) return false;
             var horizontals = Edges.Where(edge => edge.IsHorizontal &&
-                                          edge.Node1.Offset.Y > Area.Y + Helper.Epsilon && edge.Node1.Offset.Y < Area.Y + Area.Height - Helper.Epsilon);
+                                          edge.Node1.Location.Y > Area.Y + Helper.Epsilon && edge.Node1.Location.Y < Area.Y + Area.Height - Helper.Epsilon);
             using (var grp = new GraphicsPath())
             using (var pen = new Pen(Color.Black, width))
             {
@@ -229,7 +229,7 @@ namespace GridTableBuilder
                 foreach (var edge in horizontals)
                 {
                     grp.Reset();
-                    grp.AddLine(edge.Node1.Offset, edge.Node2.Offset);
+                    grp.AddLine(edge.Node1.Location, edge.Node2.Location);
                     if (grp.IsOutlineVisible(location, pen))
                         return true;
                 }
@@ -247,14 +247,14 @@ namespace GridTableBuilder
         {
             if (Area.IsEmpty) return false;
             var verticals = Edges.Where(edge => edge.IsVertical &&
-                                          edge.Node1.Offset.X > Area.X + Helper.Epsilon && edge.Node1.Offset.X < Area.X + Area.Width - Helper.Epsilon);
+                                          edge.Node1.Location.X > Area.X + Helper.Epsilon && edge.Node1.Location.X < Area.X + Area.Width - Helper.Epsilon);
             using (var grp = new GraphicsPath())
             using (var pen = new Pen(Color.Black, width))
             {
                 foreach (var edge in verticals)
                 {
                     grp.Reset();
-                    grp.AddLine(edge.Node1.Offset, edge.Node2.Offset);
+                    grp.AddLine(edge.Node1.Location, edge.Node2.Location);
                     if (grp.IsOutlineVisible(location, pen))
                         return true;
                 }

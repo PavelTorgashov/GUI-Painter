@@ -2,18 +2,18 @@
 using System.Drawing;
 using System.Linq;
 
-namespace GridTableBuilder
+namespace Grid_Model_old
 {
     public class PointNode
     {
-        public Point Offset { get; set; }
+        public Point Location { get; set; }
         public List<Edge> Edges { get; set; } = new List<Edge>();
 
         public int Index { get; set; }
 
         public PointNode(Point offset)
         {
-            Offset = offset;
+            Location = offset;
         }
 
         public bool IsEmpty
