@@ -1,0 +1,9 @@
+D:\Work\ForGuiPainter\GridTableBuilder\bin\Debug\GridTableBuilder.exe.config
+D:\Work\ForGuiPainter\GridTableBuilder\bin\Debug\GridTableBuilder.exe
+D:\Work\ForGuiPainter\GridTableBuilder\bin\Debug\GridTableBuilder.pdb
+D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.MainForm.resources
+D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.Properties.Resources.resources
+D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.GenerateResource.Cache
+D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.CoreCompileInputs.cache
+D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.exe
+D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.pdb
