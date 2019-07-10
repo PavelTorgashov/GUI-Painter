@@ -46,20 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Edge.cs" />
-    <Compile Include="Grid.cs" />
-    <Compile Include="GridDraw.cs" />
-    <Compile Include="GridErase.cs" />
-    <Compile Include="GridMove.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="Line.cs" />
+    <Compile Include="Controls\DrawGridPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MouseController.cs" />
+    <Compile Include="Grid_Model\Edge.cs" />
+    <Compile Include="Grid_Model\Grid.cs" />
+    <Compile Include="Grid_Model\GridDraw.cs" />
+    <Compile Include="Grid_Model\GridErase.cs" />
+    <Compile Include="Grid_Model\GridMove.cs" />
+    <Compile Include="Grid_Model\Helper.cs" />
+    <Compile Include="Grid_Model\Line.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PointNode.cs" />
+    <Compile Include="Grid_Model\PointNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">

@@ -7,3 +7,13 @@ D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.Generat
 D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.CoreCompileInputs.cache
 D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.exe
 D:\Work\ForGuiPainter\GridTableBuilder\obj\Debug\GridTableBuilder.pdb
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\bin\Debug\GridTableBuilder.exe.config
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\bin\Debug\GridTableBuilder.exe
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\bin\Debug\GridTableBuilder.pdb
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csprojAssemblyReference.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.MainForm.resources
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.Properties.Resources.resources
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.GenerateResource.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.CoreCompileInputs.cache
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.exe
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.pdb

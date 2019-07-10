@@ -12,7 +12,7 @@ namespace GridTableBuilder
         {
             InitializeComponent();
             DoubleBuffered = true;
-            grid = new Grid() { Area = new Rectangle(200, 50, 400, 300) };
+            grid = new Grid() { Area = new Rectangle(250, 50, 400, 300) };
             grid.Init();
             Text = $"Nodes: {grid.Nodes.Count}, Edges: {grid.Edges.Count}";
             FillTreeView();
