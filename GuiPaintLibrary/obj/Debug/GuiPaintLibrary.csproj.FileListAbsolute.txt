@@ -10,3 +10,8 @@ D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibr
 D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csproj.CoreCompileInputs.cache
 D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.dll
 D:\Projects_CSharp\GUIPainter\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.pdb
+D:\Work\GUI-Painter\GuiPaintLibrary\bin\Debug\GuiPaintLibrary.dll
+D:\Work\GUI-Painter\GuiPaintLibrary\bin\Debug\GuiPaintLibrary.pdb
+D:\Work\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csproj.CoreCompileInputs.cache
+D:\Work\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.dll
+D:\Work\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.pdb
