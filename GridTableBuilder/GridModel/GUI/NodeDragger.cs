@@ -8,7 +8,7 @@ namespace GridTableBuilder.GridModel.GUI
 {
     class NodeDragger : IDragger, IDisposable
     {
-        public Cursor Cursor => Cursors.SizeAll;
+        public Cursor Cursor => Cursors.Hand;
 
         Node node;
         int minX;
@@ -57,9 +57,6 @@ namespace GridTableBuilder.GridModel.GUI
             if (p.X > maxX) p.X = maxX;
             if (p.Y < minY) p.Y = minY;
             if (p.Y > maxY) p.Y = maxY;
-
-            var loc = node.OriginalLocation;
-            loc.Offset(node.Offset);
 
             node.Offset = new Point(p.X - node.OriginalLocation.X, p.Y - node.OriginalLocation.Y);
         }
