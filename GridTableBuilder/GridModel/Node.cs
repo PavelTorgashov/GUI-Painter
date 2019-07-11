@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using GridTableBuilder.GridModel.GUI;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace GridTableBuilder.GridModel
@@ -25,10 +27,16 @@ namespace GridTableBuilder.GridModel
 
         #region IDraggable
 
-        int IDraggable.Priority => 10;
+        int IDraggable.Priority => 5;
 
         IDragger IDraggable.GetDragger(Point mousePos)
         {
+            const int padding = 3;
+            var location = OriginalLocation;
+            location.Offset(Offset);
+            if (Math.Abs(mousePos.X - location.X) <= padding && Math.Abs(mousePos.Y - location.Y) <= padding)
+                return new NodeDragger(this);
+
             return null;
         }
 

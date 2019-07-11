@@ -53,6 +53,7 @@
     <Compile Include="GridModel\GUI\MouseController.cs" />
     <Compile Include="GridModel\Edge.cs" />
     <Compile Include="GridModel\Grid.cs" />
+    <Compile Include="GridModel\GUI\NodeDragger.cs" />
     <Compile Include="GridModel\GUI\TrackLineDragger.cs" />
     <Compile Include="GridModel\Interfaces\IDraggable.cs" />
     <Compile Include="GridModel\Interfaces\IDragger.cs" />
