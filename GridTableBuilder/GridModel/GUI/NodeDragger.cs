@@ -33,12 +33,12 @@ namespace GridTableBuilder.GridModel.GUI
             const float padding = 3;
             minX = pointsX.Where(x => x < node.OriginalLocation.X).LastOrDefault() + padding;
             maxX = pointsX.Where(x => x > node.OriginalLocation.X).FirstOrDefault() - padding;
-            if (Math.Abs(-padding - maxX) < 0.0001)
+            if (maxX.Around(-padding))
                 maxX = 10000;
 
             minY = pointsY.Where(y => y < node.OriginalLocation.Y).LastOrDefault() + padding;
             maxY = pointsY.Where(y => y > node.OriginalLocation.Y).FirstOrDefault() - padding;
-            if (Math.Abs(-padding - maxY) < 0.0001)
+            if (maxY.Around(-padding))
                 maxY = 10000;
 
             mc.MouseMove += Mc_MouseMove;

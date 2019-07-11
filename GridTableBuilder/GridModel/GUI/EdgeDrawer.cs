@@ -45,7 +45,7 @@ namespace GridTableBuilder.GridModel.GUI
             var toLoc = isHorizontal ? Math.Max(loc.X, mc.MouseDownPoint.X) : Math.Max(loc.Y, mc.MouseDownPoint.Y);
             var from = points.Where(x => x <= fromLoc).LastOrDefault();
             var to = points.Where(x => x >= toLoc).FirstOrDefault();
-            if (Math.Abs(from) < 0.0001 || Math.Abs(to) < 0.0001)
+            if (from.Around(0) || to.Around(0))
             {
                 From = To = Point.Empty;
                 return;

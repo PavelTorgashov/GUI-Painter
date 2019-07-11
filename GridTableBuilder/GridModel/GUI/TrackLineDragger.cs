@@ -31,13 +31,13 @@ namespace GridTableBuilder.GridModel.GUI
             const float padding = 3;
             minLocation = points.Where(x => x < line.Location).LastOrDefault() + padding;
             maxLocation = points.Where(x => x > line.Location).FirstOrDefault() - padding;
-            if (Math.Abs(-padding - maxLocation) < 0.0001)
+            if (maxLocation.Around(-padding))
                 maxLocation = 10000;
 
             //get my node list
-            nodes = new LinkedList<Node>(line.Grid.Nodes.Where(n => line.IsHorizontal 
-            ? Math.Abs(n.OriginalLocation.Y - line.Location) < 0.0001 
-            : Math.Abs(n.OriginalLocation.X - line.Location) < 0.0001)).ToList();
+            nodes = line.Grid.Nodes.Where(n => line.IsHorizontal 
+            ? n.OriginalLocation.Y.Around(line.Location) 
+            : n.OriginalLocation.X.Around(line.Location)).ToList();
             mc.MouseMove += Mc_MouseMove;
             mc.MouseUp += Mc_MouseUp;
         }

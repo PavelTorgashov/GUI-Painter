@@ -37,7 +37,7 @@ namespace GridTableBuilder.GridModel
 
         public void AddEdges(PointF from, PointF to)
         {
-            if (Math.Abs(from.X - to.X) < 0.0001)
+            if (from.X.Around(to.X))
                 AddVertEdges(from, to);
             else
                 AddHorizEdges(from, to);
