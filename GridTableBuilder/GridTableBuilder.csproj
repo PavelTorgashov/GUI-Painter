@@ -50,6 +50,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GridModel\GUI\EdgeDrawer.cs" />
+    <Compile Include="GridModel\GUI\Marker.cs" />
     <Compile Include="GridModel\GUI\MouseController.cs" />
     <Compile Include="GridModel\Edge.cs" />
     <Compile Include="GridModel\Grid.cs" />
@@ -94,6 +95,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GuiPaintLibrary\GuiPaintLibrary.csproj">
+      <Project>{c0badbf0-1103-4b21-be2a-5d44a38ef01b}</Project>
+      <Name>GuiPaintLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
