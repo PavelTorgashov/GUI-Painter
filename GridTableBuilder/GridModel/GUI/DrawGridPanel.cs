@@ -1,11 +1,9 @@
 ﻿using GridTableBuilder.GridModel;
 using GridTableBuilder.GridModel.GUI;
 using System;
-using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GridTableBuilder.Controls
@@ -20,10 +18,18 @@ namespace GridTableBuilder.Controls
         IDragger dragger;
         EdgeDrawer edgeDrawer;
 
+        //SizeMarker sizeMarker;
+
         public DrawGridPanel()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
             mouse = new MouseController(this, Mouse_MouseDown, Mouse_MouseMove, Mouse_MouseUp);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            Build(grid);
         }
 
         public void Build (Grid grid)
@@ -31,6 +37,9 @@ namespace GridTableBuilder.Controls
             this.grid = grid;
             Selected = null;
             SelectedChanged(null);
+
+            //sizeMarker = new SizeMarker(grid, new Point(310, 210));
+
             Invalidate(false);
         }
 
@@ -48,11 +57,15 @@ namespace GridTableBuilder.Controls
 
             if (edgeDrawer != null)
                 edgeDrawer.Draw(pe.Graphics, ps);
+
+            //if (sizeMarker != null)
+            //    ((IDrawable)sizeMarker).Draw(pe.Graphics, ps);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
+
             if (edgeDrawer != null)
                 return;
 
@@ -63,6 +76,11 @@ namespace GridTableBuilder.Controls
                 //set cursor
                 if (dr != null)
                     Cursor = dr.Cursor;
+                //else if (sizeMarker != null)
+                //{
+                //    dr = ((IDraggable)sizeMarker).GetDragger(e.Location);
+                //    Cursor = dr != null ? dr.Cursor : Cursors.Default;
+                //}
                 else
                     Cursor = Cursors.Default;
             }
@@ -111,6 +129,12 @@ namespace GridTableBuilder.Controls
             //start drag
             if (dragger != null)
                 dragger.Start(mouse);
+            //else if (sizeMarker != null)
+            //{
+            //    dragger = ((IDraggable)sizeMarker).GetDragger(e.Location);
+            //    if (dragger != null)
+            //        dragger.Start(mouse);
+            //}
 
             //start draw edge
             if (Selected == null && dragger == null)

@@ -50,11 +50,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GridModel\GUI\EdgeDrawer.cs" />
-    <Compile Include="GridModel\GUI\Marker.cs" />
+    <Compile Include="GridModel\SizeMarker.cs" />
     <Compile Include="GridModel\GUI\MouseController.cs" />
     <Compile Include="GridModel\Edge.cs" />
     <Compile Include="GridModel\Grid.cs" />
     <Compile Include="GridModel\GUI\NodeDragger.cs" />
+    <Compile Include="GridModel\GUI\SizeMarkerDragger.cs" />
     <Compile Include="GridModel\GUI\TrackLineDragger.cs" />
     <Compile Include="GridModel\Interfaces\IDraggable.cs" />
     <Compile Include="GridModel\Interfaces\IDragger.cs" />

@@ -7,12 +7,12 @@ namespace GridTableBuilder.GridModel
 {
     public class TrackLine : IDraggable, IDrawable
     {
-        public readonly int Location;
+        public readonly float Location;
         public readonly bool IsHorizontal;
         /// <summary> Parent Grid </summary>
         public readonly Grid Grid;
 
-        public TrackLine(Grid grid, int location, bool isHorizontal)
+        public TrackLine(Grid grid, float location, bool isHorizontal)
         {
             Grid = grid;
             IsHorizontal = isHorizontal;
@@ -23,7 +23,7 @@ namespace GridTableBuilder.GridModel
 
         int IDraggable.Priority => 10;
 
-        IDragger IDraggable.GetDragger(Point mousePos)
+        IDragger IDraggable.GetDragger(PointF mousePos)
         {
             const int padding = 3;
             var loc = IsHorizontal ? mousePos.Y : mousePos.X;

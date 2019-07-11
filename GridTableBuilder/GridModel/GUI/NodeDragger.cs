@@ -11,10 +11,10 @@ namespace GridTableBuilder.GridModel.GUI
         public Cursor Cursor => Cursors.Hand;
 
         Node node;
-        int minX;
-        int maxX;
-        int minY;
-        int maxY;
+        float minX;
+        float maxX;
+        float minY;
+        float maxY;
         MouseController mc;
 
         public NodeDragger(Node node)
@@ -30,7 +30,7 @@ namespace GridTableBuilder.GridModel.GUI
             var pointsX = node.Grid.Nodes.Where(n => n != node).Select(n => n.OriginalLocation.X).OrderBy(x => x).ToArray();
             var pointsY = node.Grid.Nodes.Where(n => n != node).Select(n => n.OriginalLocation.Y).OrderBy(y => y).ToArray();
 
-            const int padding = 3;
+            const float padding = 3;
             minX = pointsX.Where(x => x < node.OriginalLocation.X).LastOrDefault() + padding;
             maxX = pointsX.Where(x => x > node.OriginalLocation.X).FirstOrDefault() - padding;
             if (maxX == -padding)
@@ -52,13 +52,13 @@ namespace GridTableBuilder.GridModel.GUI
 
         private void Mc_MouseMove(MouseEventArgs e)
         {
-            var p = e.Location;
+            var p = new PointF(e.Location.X, e.Location.Y);
             if (p.X < minX) p.X = minX;
             if (p.X > maxX) p.X = maxX;
             if (p.Y < minY) p.Y = minY;
             if (p.Y > maxY) p.Y = maxY;
 
-            node.Offset = new Point(p.X - node.OriginalLocation.X, p.Y - node.OriginalLocation.Y);
+            node.Offset = new PointF(p.X - node.OriginalLocation.X, p.Y - node.OriginalLocation.Y);
         }
 
         public void Dispose()

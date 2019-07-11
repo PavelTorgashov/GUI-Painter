@@ -26,4 +26,7 @@ D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.GenerateR
 D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.CoreCompileInputs.cache
 D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.exe
 D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.pdb
-D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csprojResolveAssemblyReference.cache
+D:\Work\GUI-Painter\GridTableBuilder\bin\Debug\GuiPaintLibrary.dll
+D:\Work\GUI-Painter\GridTableBuilder\bin\Debug\GuiPaintLibrary.pdb
+D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csprojAssemblyReference.cache
+D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.CopyComplete

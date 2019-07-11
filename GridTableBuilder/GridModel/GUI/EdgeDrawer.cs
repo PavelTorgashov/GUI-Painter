@@ -14,9 +14,9 @@ namespace GridTableBuilder.GridModel.GUI
         public Cursor Cursor => Cursors.Hand;
 
         MouseController mc;
-        Point From;
-        Point To;
-        Point currentPoint;
+        PointF From;
+        PointF To;
+        PointF currentPoint;
         public Grid Grid;
 
         public void Start(MouseController mc, Grid grid)
@@ -56,12 +56,12 @@ namespace GridTableBuilder.GridModel.GUI
             {
                 if (isHorizontal)
                 {
-                    From = new Point(from, mc.MouseDownPoint.Y);
-                    To = new Point(to, mc.MouseDownPoint.Y);
+                    From = new PointF(from, mc.MouseDownPoint.Y);
+                    To = new PointF(to, mc.MouseDownPoint.Y);
                 } else
                 {
-                    From = new Point(mc.MouseDownPoint.X, from);
-                    To = new Point(mc.MouseDownPoint.X, to);
+                    From = new PointF(mc.MouseDownPoint.X, from);
+                    To = new PointF(mc.MouseDownPoint.X, to);
                 }
             }
         }

@@ -14,8 +14,8 @@ namespace GridTableBuilder.GridModel.GUI
         public Cursor Cursor => line.IsHorizontal ? Cursors.HSplit : Cursors.VSplit;
 
         TrackLine line;
-        int minLocation;
-        int maxLocation;
+        float minLocation;
+        float maxLocation;
         List<Node> nodes;
         MouseController mc;
 
@@ -30,7 +30,7 @@ namespace GridTableBuilder.GridModel.GUI
 
             //calc min and max
             var points = line.Grid.Nodes.Select(n => line.IsHorizontal ? n.OriginalLocation.Y : n.OriginalLocation.X).OrderBy(x => x).ToArray();
-            const int padding = 3;
+            const float padding = 3;
             minLocation = points.Where(x => x < line.Location).LastOrDefault() + padding;
             maxLocation = points.Where(x => x > line.Location).FirstOrDefault() - padding;
             if (maxLocation == -padding)
@@ -49,7 +49,7 @@ namespace GridTableBuilder.GridModel.GUI
 
         private void Mc_MouseMove(MouseEventArgs e)
         {
-            var p = e.Location;
+            var p = new PointF(e.Location.X, e.Location.Y);
 
             foreach (var node in nodes)
             {

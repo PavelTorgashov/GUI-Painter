@@ -5,6 +5,6 @@ namespace GridTableBuilder.GridModel
     interface IDraggable
     {
         int Priority { get; }
-        IDragger GetDragger(Point mousePos);
+        IDragger GetDragger(PointF mousePos);
     }
 }

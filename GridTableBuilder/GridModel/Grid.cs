@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridTableBuilder.GridModel.GUI;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -29,12 +30,15 @@ namespace GridTableBuilder.GridModel
 
                 foreach (var track in Nodes.Select(n => n.OriginalLocation.Y).Distinct().Select(y => new TrackLine(this, y, true)).OrderBy(t => t.Location))
                     yield return track;
+
+                yield return new SizeMarker(this, new PointF(Nodes.Max(n => n.OriginalLocation.X) + 10, Nodes.Max(n => n.OriginalLocation.Y) + 10));
             }
         }
 
+
         #region Add edges
 
-        public void AddEdges(Point from, Point to)
+        public void AddEdges(PointF from, PointF to)
         {
             if (from.X == to.X)
                 AddVertEdges(from, to);
@@ -42,7 +46,7 @@ namespace GridTableBuilder.GridModel
                 AddHorizEdges(from, to);
         }
 
-        private void AddVertEdges(Point from, Point to)
+        private void AddVertEdges(PointF from, PointF to)
         {
             var fromY = Math.Min(from.Y, to.Y);
             var toY = Math.Max(from.Y, to.Y);
@@ -52,23 +56,23 @@ namespace GridTableBuilder.GridModel
                     e => e.IsHorisontal
                     && e.Node1.OriginalLocation.Y >= fromY
                     && e.Node1.OriginalLocation.Y <= toY
-                    && e.Contains(new Point(from.X, e.Node1.OriginalLocation.Y))
+                    && e.Contains(new PointF(from.X, e.Node1.OriginalLocation.Y))
                 ).OrderBy(e => e.Node1.OriginalLocation.Y).ToArray();
             if (edges.Length < 2)
                 return;
 
-            Node prevNode = new Node(this, new Point(from.X, edges[0].Node1.OriginalLocation.Y));
+            Node prevNode = new Node(this, new PointF(from.X, edges[0].Node1.OriginalLocation.Y));
             DivideEdge(edges[0], prevNode);
             for (int i = 1; i < edges.Length; i++)
             {
-                Node node = new Node(this, new Point(from.X, edges[i].Node1.OriginalLocation.Y));
+                Node node = new Node(this, new PointF(from.X, edges[i].Node1.OriginalLocation.Y));
                 DivideEdge(edges[i], node);
                 new Edge(prevNode, node);
                 prevNode = node;
             }
         }
 
-        private void AddHorizEdges(Point from, Point to)
+        private void AddHorizEdges(PointF from, PointF to)
         {
             var fromX = Math.Min(from.X, to.X);
             var toX = Math.Max(from.X, to.X);
@@ -78,16 +82,16 @@ namespace GridTableBuilder.GridModel
                     e => !e.IsHorisontal 
                     && e.Node1.OriginalLocation.X >= fromX 
                     && e.Node1.OriginalLocation.X <= toX 
-                    && e.Contains(new Point(e.Node1.OriginalLocation.X, from.Y))
+                    && e.Contains(new PointF(e.Node1.OriginalLocation.X, from.Y))
                 ).OrderBy(e => e.Node1.OriginalLocation.X).ToArray();
             if (edges.Length < 2)
                 return;
 
-            Node prevNode = new Node(this, new Point(edges[0].Node1.OriginalLocation.X, from.Y));
+            Node prevNode = new Node(this, new PointF(edges[0].Node1.OriginalLocation.X, from.Y));
             DivideEdge(edges[0], prevNode);
             for (int i = 1; i < edges.Length; i++)
             {
-                Node node = new Node(this, new Point(edges[i].Node1.OriginalLocation.X, from.Y));
+                Node node = new Node(this, new PointF(edges[i].Node1.OriginalLocation.X, from.Y));
                 DivideEdge(edges[i], node);
                 new Edge(prevNode, node);
                 prevNode = node;
@@ -191,10 +195,10 @@ namespace GridTableBuilder.GridModel
 
         public Grid()
         {
-            var n1 = new Node(this, new Point(100, 100));
-            var n2 = new Node(this, new Point(300, 100));
-            var n3 = new Node(this, new Point(300, 200));
-            var n4 = new Node(this, new Point(100, 200));
+            var n1 = new Node(this, new PointF(100, 100));
+            var n2 = new Node(this, new PointF(300, 100));
+            var n3 = new Node(this, new PointF(300, 200));
+            var n4 = new Node(this, new PointF(100, 200));
 
             new Edge(n1, n2);
             new Edge(n2, n3);

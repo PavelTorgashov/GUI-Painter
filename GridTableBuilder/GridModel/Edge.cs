@@ -49,7 +49,7 @@ namespace GridTableBuilder.GridModel
             return true;
         }
 
-        public bool Contains(Point p)
+        public bool Contains(PointF p)
         {
             if (IsHorisontal)
                 return p.Y == Node1.OriginalLocation.Y
