@@ -1,10 +1,7 @@
-﻿using GridTableBuilder.GridModel.GUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridTableBuilder.GridModel
 {
@@ -40,7 +37,7 @@ namespace GridTableBuilder.GridModel
 
         public void AddEdges(PointF from, PointF to)
         {
-            if (from.X == to.X)
+            if (Math.Abs(from.X - to.X) < 0.0001)
                 AddVertEdges(from, to);
             else
                 AddHorizEdges(from, to);

@@ -11,7 +11,7 @@ namespace GridTableBuilder.GridModel
         public Node Node1;
         public Node Node2;
         public Grid Grid => Node1.Grid;
-        public bool IsHorisontal => Node1.OriginalLocation.Y == Node2.OriginalLocation.Y;
+        public bool IsHorisontal => Math.Abs(Node1.OriginalLocation.Y - Node2.OriginalLocation.Y) < 0.0001;
 
         public Edge(Node node1, Node node2)
         {
@@ -52,11 +52,11 @@ namespace GridTableBuilder.GridModel
         public bool Contains(PointF p)
         {
             if (IsHorisontal)
-                return p.Y == Node1.OriginalLocation.Y
+                return Math.Abs(p.Y - Node1.OriginalLocation.Y) < 0.0001
                     && p.X >= Math.Min(Node1.OriginalLocation.X, Node2.OriginalLocation.X)
                     && p.X <= Math.Max(Node1.OriginalLocation.X, Node2.OriginalLocation.X);
             else
-                return p.X == Node1.OriginalLocation.X
+                return Math.Abs(p.X - Node1.OriginalLocation.X) < 0.0001
                     && p.Y >= Math.Min(Node1.OriginalLocation.Y, Node2.OriginalLocation.Y)
                     && p.Y <= Math.Max(Node1.OriginalLocation.Y, Node2.OriginalLocation.Y);
         }

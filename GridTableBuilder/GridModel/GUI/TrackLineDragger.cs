@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GridTableBuilder.Controls;
 
@@ -33,11 +31,13 @@ namespace GridTableBuilder.GridModel.GUI
             const float padding = 3;
             minLocation = points.Where(x => x < line.Location).LastOrDefault() + padding;
             maxLocation = points.Where(x => x > line.Location).FirstOrDefault() - padding;
-            if (maxLocation == -padding)
+            if (Math.Abs(-padding - maxLocation) < 0.0001)
                 maxLocation = 10000;
 
             //get my node list
-            nodes = new LinkedList<Node>(line.Grid.Nodes.Where(n => line.IsHorizontal ? n.OriginalLocation.Y == line.Location : n.OriginalLocation.X == line.Location)).ToList();
+            nodes = new LinkedList<Node>(line.Grid.Nodes.Where(n => line.IsHorizontal 
+            ? Math.Abs(n.OriginalLocation.Y - line.Location) < 0.0001 
+            : Math.Abs(n.OriginalLocation.X - line.Location) < 0.0001)).ToList();
             mc.MouseMove += Mc_MouseMove;
             mc.MouseUp += Mc_MouseUp;
         }

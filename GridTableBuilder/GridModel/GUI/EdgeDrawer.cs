@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GridTableBuilder.Controls;
 
@@ -48,7 +45,7 @@ namespace GridTableBuilder.GridModel.GUI
             var toLoc = isHorizontal ? Math.Max(loc.X, mc.MouseDownPoint.X) : Math.Max(loc.Y, mc.MouseDownPoint.Y);
             var from = points.Where(x => x <= fromLoc).LastOrDefault();
             var to = points.Where(x => x >= toLoc).FirstOrDefault();
-            if (from == 0 || to == 0)
+            if (Math.Abs(from) < 0.0001 || Math.Abs(to) < 0.0001)
             {
                 From = To = Point.Empty;
                 return;
