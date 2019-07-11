@@ -33,12 +33,12 @@ namespace GridTableBuilder.GridModel.GUI
             const float padding = 3;
             minX = pointsX.Where(x => x < node.OriginalLocation.X).LastOrDefault() + padding;
             maxX = pointsX.Where(x => x > node.OriginalLocation.X).FirstOrDefault() - padding;
-            if (maxX == -padding)
+            if (Math.Abs(-padding - maxX) < 0.0001)
                 maxX = 10000;
 
             minY = pointsY.Where(y => y < node.OriginalLocation.Y).LastOrDefault() + padding;
             maxY = pointsY.Where(y => y > node.OriginalLocation.Y).FirstOrDefault() - padding;
-            if (maxY == -padding)
+            if (Math.Abs(-padding - maxY) < 0.0001)
                 maxY = 10000;
 
             mc.MouseMove += Mc_MouseMove;
@@ -57,8 +57,12 @@ namespace GridTableBuilder.GridModel.GUI
             if (p.X > maxX) p.X = maxX;
             if (p.Y < minY) p.Y = minY;
             if (p.Y > maxY) p.Y = maxY;
-
-            node.Offset = new PointF(p.X - node.OriginalLocation.X, p.Y - node.OriginalLocation.Y);
+            var offset = new PointF(p.X - node.OriginalLocation.X, p.Y - node.OriginalLocation.Y);
+            // прилипание
+            const float padding = 5;
+            if (Math.Abs(offset.X) < padding) offset.X = 0;
+            if (Math.Abs(offset.Y) < padding) offset.Y = 0;
+            node.Offset = offset;
         }
 
         public void Dispose()
