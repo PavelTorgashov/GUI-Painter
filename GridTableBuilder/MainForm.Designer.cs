@@ -30,9 +30,13 @@
         {
             this.pnDrawGrid = new GridTableBuilder.Controls.DrawGridPanel();
             this.pnEdgeProperties = new System.Windows.Forms.Panel();
+            this.lbRadius = new System.Windows.Forms.Label();
+            this.nudRadius = new System.Windows.Forms.NumericUpDown();
+            this.btCurve = new System.Windows.Forms.Button();
             this.btLine = new System.Windows.Forms.Button();
             this.btCircleEdge = new System.Windows.Forms.Button();
             this.pnEdgeProperties.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).BeginInit();
             this.SuspendLayout();
             // 
             // pnDrawGrid
@@ -51,12 +55,54 @@
             // 
             // pnEdgeProperties
             // 
+            this.pnEdgeProperties.Controls.Add(this.lbRadius);
+            this.pnEdgeProperties.Controls.Add(this.nudRadius);
+            this.pnEdgeProperties.Controls.Add(this.btCurve);
             this.pnEdgeProperties.Controls.Add(this.btLine);
             this.pnEdgeProperties.Controls.Add(this.btCircleEdge);
             this.pnEdgeProperties.Location = new System.Drawing.Point(12, 1);
             this.pnEdgeProperties.Name = "pnEdgeProperties";
-            this.pnEdgeProperties.Size = new System.Drawing.Size(343, 30);
+            this.pnEdgeProperties.Size = new System.Drawing.Size(774, 30);
             this.pnEdgeProperties.TabIndex = 6;
+            // 
+            // lbRadius
+            // 
+            this.lbRadius.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbRadius.AutoSize = true;
+            this.lbRadius.Location = new System.Drawing.Point(586, 7);
+            this.lbRadius.Name = "lbRadius";
+            this.lbRadius.Size = new System.Drawing.Size(52, 17);
+            this.lbRadius.TabIndex = 4;
+            this.lbRadius.Text = "Radius";
+            // 
+            // nudRadius
+            // 
+            this.nudRadius.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudRadius.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudRadius.Location = new System.Drawing.Point(644, 5);
+            this.nudRadius.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nudRadius.Name = "nudRadius";
+            this.nudRadius.Size = new System.Drawing.Size(113, 22);
+            this.nudRadius.TabIndex = 3;
+            this.nudRadius.ValueChanged += new System.EventHandler(this.nudRadius_ValueChanged);
+            // 
+            // btCurve
+            // 
+            this.btCurve.Location = new System.Drawing.Point(165, 3);
+            this.btCurve.Name = "btCurve";
+            this.btCurve.Size = new System.Drawing.Size(75, 25);
+            this.btCurve.TabIndex = 2;
+            this.btCurve.Text = "Curve";
+            this.btCurve.UseVisualStyleBackColor = true;
+            this.btCurve.Click += new System.EventHandler(this.btCurve_Click);
             // 
             // btLine
             // 
@@ -70,7 +116,7 @@
             // 
             // btCircleEdge
             // 
-            this.btCircleEdge.Location = new System.Drawing.Point(79, 3);
+            this.btCircleEdge.Location = new System.Drawing.Point(84, 3);
             this.btCircleEdge.Name = "btCircleEdge";
             this.btCircleEdge.Size = new System.Drawing.Size(75, 25);
             this.btCircleEdge.TabIndex = 0;
@@ -90,6 +136,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GridTableBuilder";
             this.pnEdgeProperties.ResumeLayout(false);
+            this.pnEdgeProperties.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -99,6 +147,9 @@
         private System.Windows.Forms.Panel pnEdgeProperties;
         private System.Windows.Forms.Button btLine;
         private System.Windows.Forms.Button btCircleEdge;
+        private System.Windows.Forms.Button btCurve;
+        private System.Windows.Forms.Label lbRadius;
+        private System.Windows.Forms.NumericUpDown nudRadius;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -13,8 +14,7 @@ namespace GridTableBuilder.GridModel
         public Grid Grid => Node1.Grid;
         public bool IsHorisontal => Node1.OriginalLocation.Y.Around(Node2.OriginalLocation.Y);
 
-        public readonly EdgeConnector Connector1 = new EdgeConnector();
-        public readonly EdgeConnector Connector2 = new EdgeConnector();
+        public BaseEdgeBuilder Builder;
 
         public Edge(Node node1, Node node2)
         {
@@ -23,6 +23,8 @@ namespace GridTableBuilder.GridModel
 
             node1.Edges.Add(this);
             node2.Edges.Add(this);
+
+            Builder = new LineEdgeBuilder(this);
         }
 
         public Node GetOtherNode(Node caller)
@@ -30,36 +32,7 @@ namespace GridTableBuilder.GridModel
             return caller == Node1 ? Node2 : Node1;
         }
 
-        /// <summary> Get direction vector along some edge </summary>
-        PointF GetDir(Node node, EdgeDirection dir)
-        {
-            var e = node.GetEdge(dir);
-            if (e == null || e == this) return PointF.Empty;
-            var node2 = e.GetOtherNode(node);
-            var res = node2.LocationF.Sub(node.LocationF).Normalized();
-            return res;
-        }
-
-        GraphicsPath Path
-        {
-            get
-            {
-                var path = new GraphicsPath();
-                if (Connector1.ConnectedEdge == EdgeDirection.None && Connector2.ConnectedEdge == EdgeDirection.None)
-                {
-                    path.AddLine(Node1.Location, Node2.Location);
-                } else
-                {
-                    var len = Node1.LocationF.DistanceTo(Node2.LocationF);
-                    var dir1 = GetDir(Node1, Connector1.ConnectedEdge);
-                    var dir2 = GetDir(Node2, Connector2.ConnectedEdge);
-                    var point1 = Node1.LocationF.Add(dir1.Mul(-Connector1.BezierPower * len));
-                    var point2 = Node2.LocationF.Add(dir2.Mul(-Connector2.BezierPower * len));
-                    path.AddBezier(Node1.Location, point1, point2, Node2.Location);
-                }
-                return path;
-            }
-        }
+        GraphicsPath Path => Builder.GetPath();
 
         public Node[] Nodes => new Node[] { Node1, Node2 };
 
@@ -90,36 +63,38 @@ namespace GridTableBuilder.GridModel
                     && p.Y <= Math.Max(Node1.OriginalLocation.Y, Node2.OriginalLocation.Y);
         }
 
-        public void BuildStraight()
-        {
-            Connector1.ConnectedEdge = EdgeDirection.None;
-            Connector2.ConnectedEdge = EdgeDirection.None;
-        }
+        #region Builder stuffs
 
-        public void BuildCircle()
-        {
-            var startDir = (int)Connector1.ConnectedEdge;
-            //find parallel connected edges
-            for (int dir = 1; dir <= 4; dir++)
-            {
-                var d = (EdgeDirection) ((startDir + dir) % 5);
-                var e1 = Node1.GetEdge(d);
-                var e2 = Node2.GetEdge(d);
-                if (e1 != null && e1 != this && e2 != null && e2 != this )
-                {
-                    BuildCircle(d);
-                    return;
-                }
-            }
-        }
+        //public void BuildStraight()
+        //{
+        //    Connector1.ConnectedEdge = EdgeDirection.None;
+        //    Connector2.ConnectedEdge = EdgeDirection.None;
+        //}
 
-        private void BuildCircle(EdgeDirection dir)
-        {
-            Connector1.BezierPower = EdgeConnector.CIRCLE_BEZIER_POWER;
-            Connector1.ConnectedEdge = dir;
-            Connector2.BezierPower = EdgeConnector.CIRCLE_BEZIER_POWER;
-            Connector2.ConnectedEdge = dir;
-        }
+        //public void BuildCircle()
+        //{
+        //    //find parallel connected edges
+        //    foreach (var d in GetNextDirection(Node1, Connector1.ConnectedEdge))
+        //    {
+        //        var e1 = Node1.GetEdge(d);
+        //        var e2 = Node2.GetEdge(d);
+        //        if (e1 != null && e1 != this && e2 != null && e2 != this )
+        //        {
+        //            BuildCircle(d);
+        //            return;
+        //        }
+        //    }
+        //}
+
+        //private void BuildCircle(EdgeDirection dir)
+        //{
+        //    Connector1.BezierPower = EdgeConnector.CIRCLE_BEZIER_POWER;
+        //    Connector1.ConnectedEdge = dir;
+        //    Connector2.BezierPower = EdgeConnector.CIRCLE_BEZIER_POWER;
+        //    Connector2.ConnectedEdge = dir;
+        //}
+
+        #endregion
 
         #region IDrawable
 
@@ -155,26 +130,5 @@ namespace GridTableBuilder.GridModel
         }
 
         #endregion
-    }
-
-    /// <summary> Encapsulates curvature type of connection to node </summary>
-    public class EdgeConnector
-    {
-        public const float CIRCLE_BEZIER_POWER = 0.666666f;
-
-        public EdgeDirection ConnectedEdge;
-        public float BezierPower = 1;
-    }
-
-    //   1
-    // 4 0 2
-    //   3
-    public enum EdgeDirection
-    {
-        None    = 0,
-        North   = 1,
-        East    = 2,
-        South   = 3,
-        West    = 4
     }
 }

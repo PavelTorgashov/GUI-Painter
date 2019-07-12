@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GridModel\EdgeBuilders\BaseEdgeBuilder.cs" />
+    <Compile Include="GridModel\EdgeBuilders\CircleEdgeBuilder.cs" />
+    <Compile Include="GridModel\EdgeBuilders\LineEdgeBuilder.cs" />
+    <Compile Include="GridModel\EdgeBuilders\CurveEdgeBuilder.cs" />
     <Compile Include="GridModel\Helpers\FloatHelper.cs" />
     <Compile Include="GridModel\GUI\DrawGridPanel.cs">
       <SubType>UserControl</SubType>
