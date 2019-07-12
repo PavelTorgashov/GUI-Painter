@@ -11,7 +11,9 @@ namespace GridTableBuilder.GridModel
     public class Node : IDraggable, IDrawable, ISelectable
     {
         /// <summary> Actual location of node </summary>
-        public Point Location => new Point((int)Math.Round(OriginalLocation.X + Offset.X), (int)Math.Round(OriginalLocation.Y + Offset.Y));
+        public Point Location => LocationF.ToPoint();
+        /// <summary> Actual location of node </summary>
+        public PointF LocationF => OriginalLocation.Add(Offset);
         /// <summary> Original (design) location </summary>
         public PointF OriginalLocation;
         /// <summary> Offset of location relative to OriginalLocation</summary>

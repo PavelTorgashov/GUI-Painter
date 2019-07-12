@@ -36,7 +36,7 @@ namespace GridTableBuilder.GridModel
             var e = node.GetEdge(dir);
             if (e == null || e == this) return PointF.Empty;
             var node2 = e.GetOtherNode(node);
-            var res = node2.Location.ToPointF().Sub(node.Location).Normalized();
+            var res = node2.LocationF.Sub(node.LocationF).Normalized();
             return res;
         }
 
@@ -50,11 +50,11 @@ namespace GridTableBuilder.GridModel
                     path.AddLine(Node1.Location, Node2.Location);
                 } else
                 {
-                    var len = Node1.Location.ToPointF().DistanceTo(Node2.Location);
+                    var len = Node1.LocationF.DistanceTo(Node2.LocationF);
                     var dir1 = GetDir(Node1, Connector1.ConnectedEdge);
                     var dir2 = GetDir(Node2, Connector2.ConnectedEdge);
-                    var point1 = Node1.Location.ToPointF().Add(dir1.Mul(-Connector1.BezierPower * len));
-                    var point2 = Node2.Location.ToPointF().Add(dir2.Mul(-Connector2.BezierPower * len));
+                    var point1 = Node1.LocationF.Add(dir1.Mul(-Connector1.BezierPower * len));
+                    var point2 = Node2.LocationF.Add(dir2.Mul(-Connector2.BezierPower * len));
                     path.AddBezier(Node1.Location, point1, point2, Node2.Location);
                 }
                 return path;
