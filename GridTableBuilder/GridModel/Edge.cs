@@ -13,6 +13,9 @@ namespace GridTableBuilder.GridModel
         public Grid Grid => Node1.Grid;
         public bool IsHorisontal => Node1.OriginalLocation.Y.Around(Node2.OriginalLocation.Y);
 
+        public PointF Offset1;
+        public PointF Offset2;
+
         public Edge(Node node1, Node node2)
         {
             Node1 = node1;
@@ -20,6 +23,7 @@ namespace GridTableBuilder.GridModel
 
             node1.Edges.Add(this);
             node2.Edges.Add(this);
+
         }
 
         GraphicsPath Path
@@ -27,7 +31,10 @@ namespace GridTableBuilder.GridModel
             get
             {
                 var path = new GraphicsPath();
-                path.AddLine(Node1.Location, Node2.Location);
+                //path.AddLine(Node1.Location, Node2.Location);
+                var point1 = new PointF(Node1.Location.X + Offset1.X, Node1.Location.Y + Offset1.Y);
+                var point2 = new PointF(Node2.Location.X + Offset2.X, Node2.Location.Y + Offset2.Y);
+                path.AddBezier(Node1.Location, point1, point2, Node2.Location);
                 return path;
             }
         }
