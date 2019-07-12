@@ -30,3 +30,6 @@ D:\Work\GUI-Painter\GridTableBuilder\bin\Debug\GuiPaintLibrary.dll
 D:\Work\GUI-Painter\GridTableBuilder\bin\Debug\GuiPaintLibrary.pdb
 D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csprojAssemblyReference.cache
 D:\Work\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.CopyComplete
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\bin\Debug\GuiPaintLibrary.dll
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\bin\Debug\GuiPaintLibrary.pdb
+D:\Projects_CSharp\GUIPainter\GUI-Painter\GridTableBuilder\obj\Debug\GridTableBuilder.csproj.CopyComplete
