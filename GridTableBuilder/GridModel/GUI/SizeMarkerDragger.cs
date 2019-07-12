@@ -12,7 +12,6 @@ namespace GridTableBuilder.GridModel.GUI
         public Cursor Cursor => Cursors.SizeNWSE;
 
         SizeMarker marker;
-        List<Node> nodes;
         MouseController mc;
         PointF topLeft, bottomRight;
         SizeF size;

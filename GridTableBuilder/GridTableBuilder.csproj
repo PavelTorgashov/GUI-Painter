@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GridModel\Distance.cs" />
     <Compile Include="GridModel\FloatHelper.cs" />
     <Compile Include="GridModel\GUI\DrawGridPanel.cs">
       <SubType>UserControl</SubType>

@@ -31,7 +31,6 @@ D:\Work\GUI-Painter\GuiPainter\bin\Debug\GuiPainter.exe
 D:\Work\GUI-Painter\GuiPainter\bin\Debug\GuiPainter.pdb
 D:\Work\GUI-Painter\GuiPainter\bin\Debug\GuiPaintLibrary.dll
 D:\Work\GUI-Painter\GuiPainter\bin\Debug\GuiPaintLibrary.pdb
-D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csprojResolveAssemblyReference.cache
 D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.CanvasUserControl.resources
 D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.MainForm.resources
 D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.Properties.Resources.resources
@@ -39,3 +38,5 @@ D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csproj.GenerateResource.Cach
 D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csproj.CoreCompileInputs.cache
 D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.exe
 D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.pdb
+D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csprojAssemblyReference.cache
+D:\Work\GUI-Painter\GuiPainter\obj\Debug\GuiPainter.csproj.CopyComplete
