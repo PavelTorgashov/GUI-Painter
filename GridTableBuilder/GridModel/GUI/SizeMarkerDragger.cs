@@ -53,7 +53,7 @@ namespace GridTableBuilder.GridModel.GUI
 
         private void Mc_MouseMove(MouseEventArgs e)
         {
-            float padding = marker.Offset * 2;
+            float padding = marker.Size * 2;
             var p = new PointF(e.Location.X, e.Location.Y);
             var dx = p.X - marker.Location.X;
             var dy = p.Y - marker.Location.Y;

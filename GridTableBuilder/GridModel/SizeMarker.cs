@@ -11,7 +11,7 @@ namespace GridTableBuilder.GridModel
 
         public PointF Location;
 
-        public float Offset => 4;
+        public float Size => 4;
 
         public SizeMarker(Grid grid, PointF location)
         {
@@ -41,13 +41,7 @@ namespace GridTableBuilder.GridModel
 
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
-            using (var pen = new Pen(Color.Gray, 1))
-            {
-                var loc = Location;
-                loc.X -= Offset;
-                loc.Y -= Offset;
-                gr.DrawRectangles(pen, new RectangleF[] { new RectangleF(loc, new SizeF(Offset * 2, Offset * 2)) });
-            }
+            gr.DrawRectangle(Pens.Silver, Location.X - Size, Location.Y - Size, Size * 2, Size * 2);
         }
 
         #endregion
