@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridTableBuilder.GridModel
+namespace System
 {
     public static class FloatHelper
     {

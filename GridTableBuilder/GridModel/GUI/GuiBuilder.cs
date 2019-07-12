@@ -11,6 +11,7 @@ namespace GridTableBuilder.GridModel.GUI
     public class GuiBuilder
     {
         Grid grid;
+        public ISelectable Selected;
 
         public GuiBuilder(Grid grid)
         {

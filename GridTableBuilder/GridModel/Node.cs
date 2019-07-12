@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 
 namespace GridTableBuilder.GridModel
 {
@@ -25,6 +26,24 @@ namespace GridTableBuilder.GridModel
             Grid = grid;
             OriginalLocation = originalLocation;
             grid.Nodes.AddLast(this);
+        }
+
+        public Edge GetEdge(EdgeDirection dir)
+        {
+            var p1 = Point.Round(OriginalLocation);
+            foreach (var e in Edges)
+            {
+                var p2 = Point.Round(e.GetOtherNode(this).OriginalLocation);
+                switch(dir)
+                {
+                    case EdgeDirection.North: if(p1.X == p2.X && p1.Y > p2.Y) return e; break;
+                    case EdgeDirection.East:  if(p1.Y == p2.Y && p1.X < p2.X) return e; break;
+                    case EdgeDirection.South: if(p1.X == p2.X && p1.Y < p2.Y) return e; break;
+                    case EdgeDirection.West:  if(p1.Y == p2.Y && p1.X > p2.X) return e; break;
+                }
+            }
+
+            return null;
         }
 
         GraphicsPath Path

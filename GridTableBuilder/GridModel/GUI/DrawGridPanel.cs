@@ -10,7 +10,7 @@ namespace GridTableBuilder.Controls
 {
     public class DrawGridPanel : UserControl
     {
-        public ISelectable Selected;
+        public ISelectable Selected { get => guiBuilder.Selected; set => guiBuilder.Selected = value; }
         public event Action<ISelectable> SelectedChanged = delegate { };
 
         MouseController mouse;
@@ -86,6 +86,8 @@ namespace GridTableBuilder.Controls
                 if (Selected is Edge)
                 {
                     (Selected as Edge).TryRemove();
+                    Selected = null;
+                    SelectedChanged(Selected);
                     Invalidate(false);
                 }
             }

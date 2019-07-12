@@ -16,5 +16,6 @@ namespace GridTableBuilder.GridModel
     public class DrawParams
     {
         public bool IsSelected;
+        public bool IsEditMode;
     }
 }

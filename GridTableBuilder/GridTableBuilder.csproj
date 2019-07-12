@@ -59,6 +59,7 @@
     <Compile Include="GridModel\GUI\NodeDragger.cs" />
     <Compile Include="GridModel\GUI\SizeMarkerDragger.cs" />
     <Compile Include="GridModel\GUI\TrackLineDragger.cs" />
+    <Compile Include="GridModel\Helpers\PointFHelper.cs" />
     <Compile Include="GridModel\Interfaces\IDraggable.cs" />
     <Compile Include="GridModel\Interfaces\IDragger.cs" />
     <Compile Include="GridModel\Interfaces\IDrawable.cs" />

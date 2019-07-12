@@ -13,7 +13,6 @@ namespace GridTableBuilder.GridModel.GUI
         MouseController mc;
         PointF From;
         PointF To;
-        PointF currentPoint;
         public Grid Grid;
 
         public void Start(MouseController mc, Grid grid)
