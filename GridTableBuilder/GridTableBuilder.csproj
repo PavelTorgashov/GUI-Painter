@@ -46,13 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GridModel\Distance.cs" />
-    <Compile Include="GridModel\FloatHelper.cs" />
+    <Compile Include="GridModel\Helpers\FloatHelper.cs" />
     <Compile Include="GridModel\GUI\DrawGridPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GridModel\GUI\EdgeDrawer.cs" />
-    <Compile Include="GridModel\SizeMarker.cs" />
+    <Compile Include="GridModel\GUI\GuiBuilder.cs" />
+    <Compile Include="GridModel\GUI\SizeMarker.cs" />
     <Compile Include="GridModel\GUI\MouseController.cs" />
     <Compile Include="GridModel\Edge.cs" />
     <Compile Include="GridModel\Grid.cs" />
@@ -64,7 +64,8 @@
     <Compile Include="GridModel\Interfaces\IDrawable.cs" />
     <Compile Include="GridModel\Interfaces\ISelectable.cs" />
     <Compile Include="GridModel\Node.cs" />
-    <Compile Include="GridModel\TrackLine.cs" />
+    <Compile Include="GridModel\GUI\TrackLine.cs" />
+    <Compile Include="GridModel\GUI\TrackLinesIntervalLabels.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

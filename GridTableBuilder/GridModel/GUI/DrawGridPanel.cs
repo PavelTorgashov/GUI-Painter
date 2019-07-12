@@ -14,7 +14,8 @@ namespace GridTableBuilder.Controls
         public event Action<ISelectable> SelectedChanged = delegate { };
 
         MouseController mouse;
-        Grid grid = new Grid();
+        Grid grid;
+        GuiBuilder guiBuilder;
         IDragger dragger;
         EdgeDrawer edgeDrawer;
 
@@ -22,6 +23,8 @@ namespace GridTableBuilder.Controls
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
             mouse = new MouseController(this, Mouse_MouseDown, Mouse_MouseMove, Mouse_MouseUp);
+
+            Build(new Grid());
         }
 
         protected override void OnLoad(EventArgs e)
@@ -33,6 +36,7 @@ namespace GridTableBuilder.Controls
         public void Build (Grid grid)
         {
             this.grid = grid;
+            guiBuilder = new GuiBuilder(grid);
             Selected = null;
             SelectedChanged(null);
 
@@ -45,7 +49,7 @@ namespace GridTableBuilder.Controls
             pe.Graphics.PixelOffsetMode = PixelOffsetMode.HighSpeed;
 
             var ps = new DrawParams();
-            foreach (var elem in grid.AllElements.OfType<IDrawable>().OrderBy(e => e.Priority))
+            foreach (var elem in guiBuilder.AllElements.OfType<IDrawable>().OrderBy(e => e.Priority))
             {
                 ps.IsSelected = Selected == elem;
                 elem.Draw(pe.Graphics, ps);
@@ -66,7 +70,7 @@ namespace GridTableBuilder.Controls
             if (dragger == null)
             {
                 //get draggers
-                var dr = grid.AllElements.OfType<IDraggable>().OrderBy(n => n.Priority).Select(n => n.GetDragger(e.Location)).FirstOrDefault(d => d != null);
+                var dr = guiBuilder.AllElements.OfType<IDraggable>().OrderBy(n => n.Priority).Select(n => n.GetDragger(e.Location)).FirstOrDefault(d => d != null);
                 //set cursor
                 if (dr != null)
                     Cursor = dr.Cursor;
@@ -103,7 +107,7 @@ namespace GridTableBuilder.Controls
         private void Mouse_MouseDown(MouseEventArgs e)
         {
             //get selectable
-            var newSelectable = grid.AllElements.OfType<ISelectable>().OrderBy(n => n.Priority).Where(n=>n.IsHit(e.Location)).FirstOrDefault();
+            var newSelectable = guiBuilder.AllElements.OfType<ISelectable>().OrderBy(n => n.Priority).Where(n=>n.IsHit(e.Location)).FirstOrDefault();
 
             //select
             if (newSelectable != Selected)
@@ -113,7 +117,7 @@ namespace GridTableBuilder.Controls
             }
 
             //get draggers
-            dragger = grid.AllElements.OfType<IDraggable>().OrderBy(n => n.Priority).Select(n => n.GetDragger(e.Location)).FirstOrDefault(d => d != null);
+            dragger = guiBuilder.AllElements.OfType<IDraggable>().OrderBy(n => n.Priority).Select(n => n.GetDragger(e.Location)).FirstOrDefault(d => d != null);
 
             //start drag
             if (dragger != null)
@@ -128,12 +132,6 @@ namespace GridTableBuilder.Controls
             {
                 edgeDrawer?.Dispose();
                 edgeDrawer = null;
-            }
-
-            if (Selected is Edge)
-            {
-                var edge = (Edge)Selected;
-                // вычислять углы здесь
             }
 
             //

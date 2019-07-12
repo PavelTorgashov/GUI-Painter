@@ -21,34 +21,6 @@ namespace GridTableBuilder.GridModel
 
                 foreach (var edge in Nodes.SelectMany(n => n.Edges).Distinct())
                     yield return edge;
-
-                foreach (var track in Nodes.Select(n => n.OriginalLocation.X).Distinct().Select(x => new TrackLine(this, x, false)).OrderBy(t => t.Location))
-                    yield return track;
-
-                foreach (var track in Nodes.Select(n => n.OriginalLocation.Y).Distinct().Select(y => new TrackLine(this, y, true)).OrderBy(t => t.Location))
-                    yield return track;
-
-                yield return new SizeMarker(this, new PointF(Nodes.Max(n => n.OriginalLocation.X) + 10, Nodes.Max(n => n.OriginalLocation.Y) + 10));
-
-                var last = 0f;
-                foreach (var dist in Nodes.Select(n => n.OriginalLocation.X).Distinct().Select(x => new Distance(this, x, true, x)).OrderBy(t => t.Location))
-                {
-                    var empty = last.Around(0);
-                    dist.Size -= last;
-                    last = dist.Location;
-                    if (empty) continue;
-                    yield return dist;
-                }
-
-                last = 0f;
-                foreach (var dist in Nodes.Select(n => n.OriginalLocation.Y).Distinct().Select(y => new Distance(this, y, false, y)).OrderBy(t => t.Location))
-                {
-                    var empty = last.Around(0);
-                    dist.Size -= last;
-                    last = dist.Location;
-                    if (empty) continue;
-                    yield return dist;
-                }
             }
         }
 

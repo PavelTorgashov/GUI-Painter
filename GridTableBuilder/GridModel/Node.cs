@@ -6,10 +6,11 @@ using System.Drawing.Drawing2D;
 
 namespace GridTableBuilder.GridModel
 {
+    /// <summary> Node of Grid </summary>
     public class Node : IDraggable, IDrawable, ISelectable
     {
         /// <summary> Actual location of node </summary>
-        public PointF Location => new PointF(OriginalLocation.X + Offset.X, OriginalLocation.Y + Offset.Y);
+        public Point Location => new Point((int)Math.Round(OriginalLocation.X + Offset.X), (int)Math.Round(OriginalLocation.Y + Offset.Y));
         /// <summary> Original (design) location </summary>
         public PointF OriginalLocation;
         /// <summary> Offset of location relative to OriginalLocation</summary>
