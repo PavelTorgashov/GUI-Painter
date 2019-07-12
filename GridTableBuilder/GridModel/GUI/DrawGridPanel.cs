@@ -18,8 +18,6 @@ namespace GridTableBuilder.Controls
         IDragger dragger;
         EdgeDrawer edgeDrawer;
 
-        //SizeMarker sizeMarker;
-
         public DrawGridPanel()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
@@ -37,8 +35,6 @@ namespace GridTableBuilder.Controls
             this.grid = grid;
             Selected = null;
             SelectedChanged(null);
-
-            //sizeMarker = new SizeMarker(grid, new Point(310, 210));
 
             Invalidate(false);
         }
@@ -58,8 +54,6 @@ namespace GridTableBuilder.Controls
             if (edgeDrawer != null)
                 edgeDrawer.Draw(pe.Graphics, ps);
 
-            //if (sizeMarker != null)
-            //    ((IDrawable)sizeMarker).Draw(pe.Graphics, ps);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -76,11 +70,6 @@ namespace GridTableBuilder.Controls
                 //set cursor
                 if (dr != null)
                     Cursor = dr.Cursor;
-                //else if (sizeMarker != null)
-                //{
-                //    dr = ((IDraggable)sizeMarker).GetDragger(e.Location);
-                //    Cursor = dr != null ? dr.Cursor : Cursors.Default;
-                //}
                 else
                     Cursor = Cursors.Default;
             }
@@ -129,12 +118,6 @@ namespace GridTableBuilder.Controls
             //start drag
             if (dragger != null)
                 dragger.Start(mouse);
-            //else if (sizeMarker != null)
-            //{
-            //    dragger = ((IDraggable)sizeMarker).GetDragger(e.Location);
-            //    if (dragger != null)
-            //        dragger.Start(mouse);
-            //}
 
             //start draw edge
             if (Selected == null && dragger == null)
@@ -145,6 +128,12 @@ namespace GridTableBuilder.Controls
             {
                 edgeDrawer?.Dispose();
                 edgeDrawer = null;
+            }
+
+            if (Selected is Edge)
+            {
+                var edge = (Edge)Selected;
+                // вычислять углы здесь
             }
 
             //
