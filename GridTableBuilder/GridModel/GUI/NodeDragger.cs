@@ -30,16 +30,11 @@ namespace GridTableBuilder.GridModel.GUI
             var pointsX = node.Grid.Nodes.Where(n => n != node).Select(n => n.OriginalLocation.X).OrderBy(x => x).ToArray();
             var pointsY = node.Grid.Nodes.Where(n => n != node).Select(n => n.OriginalLocation.Y).OrderBy(y => y).ToArray();
 
-            const float padding = 3;
-            minX = pointsX.Where(x => x < node.OriginalLocation.X).LastOrDefault() + padding;
-            maxX = pointsX.Where(x => x > node.OriginalLocation.X).FirstOrDefault() - padding;
-            if (maxX.Around(-padding))
-                maxX = 10000;
+            minX = pointsX.Min();
+            maxX = pointsX.Max();
 
-            minY = pointsY.Where(y => y < node.OriginalLocation.Y).LastOrDefault() + padding;
-            maxY = pointsY.Where(y => y > node.OriginalLocation.Y).FirstOrDefault() - padding;
-            if (maxY.Around(-padding))
-                maxY = 10000;
+            minY = pointsY.Min();
+            maxY = pointsY.Max();
 
             mc.MouseMove += Mc_MouseMove;
             mc.MouseUp += Mc_MouseUp;
