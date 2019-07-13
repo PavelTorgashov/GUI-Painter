@@ -48,10 +48,10 @@ namespace GridTableBuilder.GridModel.GUI
         private void Mc_MouseMove(MouseEventArgs e)
         {
             var p = new PointF(e.Location.X, e.Location.Y);
-            if (p.X < minX) p.X = minX;
-            if (p.X > maxX) p.X = maxX;
-            if (p.Y < minY) p.Y = minY;
-            if (p.Y > maxY) p.Y = maxY;
+            if (p.X < minX && node.OriginalLocation.X > minX) p.X = minX;
+            if (p.X > maxX && node.OriginalLocation.X < maxX) p.X = maxX;
+            if (p.Y < minY && node.OriginalLocation.Y > minY) p.Y = minY;
+            if (p.Y > maxY && node.OriginalLocation.Y < maxY) p.Y = maxY;
             var offset = new PointF(p.X - node.OriginalLocation.X, p.Y - node.OriginalLocation.Y);
             // прилипание
             const float padding = 5;
