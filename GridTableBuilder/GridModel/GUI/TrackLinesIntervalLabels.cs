@@ -37,7 +37,12 @@ namespace GridTableBuilder.GridModel
                     var text = $"{Math.Round(size):0.}";
                     if (size >= 40) text += "px";
                     var rect = new RectangleF(points[i], 0, size, 20);
-                    gr.DrawString(text, font, brush, rect, sf);
+                    var ts = gr.MeasureString(text, font);
+                    if (ts.Width > rect.Width)
+                        using (var f = new Font("Lucida Console", 6))
+                            gr.DrawString(text, f, brush, rect, sf);
+                    else
+                        gr.DrawString(text, font, brush, rect, sf);
                 }
 
                 //vert
@@ -54,7 +59,12 @@ namespace GridTableBuilder.GridModel
                     GraphicsState state = gr.Save();
                     gr.RotateTransform(-90, MatrixOrder.Append);
                     gr.TranslateTransform(loc.X, loc.Y, MatrixOrder.Append);
-                    gr.DrawString(text, font, brush, rect, sf);
+                    var ts = gr.MeasureString(text, font);
+                    if (ts.Width > rect.Width)
+                        using (var f = new Font("Lucida Console", 6))
+                            gr.DrawString(text, f, brush, rect, sf);
+                    else
+                        gr.DrawString(text, font, brush, rect, sf);
                     gr.Restore(state);
                 }
             }
