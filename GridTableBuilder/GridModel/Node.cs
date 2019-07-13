@@ -65,7 +65,7 @@ namespace GridTableBuilder.GridModel
 
         IDragger IDraggable.GetDragger(PointF mousePos)
         {
-            const int padding = 3;
+            const int padding = 5;
             var location = OriginalLocation;
             location = PointF.Add(location, new SizeF(Offset.X, Offset.Y));
             if (Math.Abs(mousePos.X - location.X) <= padding && Math.Abs(mousePos.Y - location.Y) <= padding)
@@ -78,16 +78,24 @@ namespace GridTableBuilder.GridModel
 
         #region IDrawable
 
-        int IDrawable.Priority => 1;
+        int IDrawable.Priority => -1;
 
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
             if (ps.IsSelected)
-                gr.FillPath(Brushes.Blue, Path);
+            {
+                const int size = 5;
+                gr.FillEllipse(Brushes.Silver, Location.X - size, Location.Y - size, size * 2, size * 2);
+            } else
+            {
+                const int size = 4;
+                //gr.DrawLine(Pens.Silver, Location.X - size, Location.Y - size, Location.X + size, Location.Y + size);
+                //gr.DrawLine(Pens.Silver, Location.X - size, Location.Y + size, Location.X + size, Location.Y - size);
+                gr.DrawEllipse(Pens.Silver, Location.X - size, Location.Y - size, size * 2, size * 2);
+            }
         }
 
         #endregion
-
 
         #region ISelectable
 
