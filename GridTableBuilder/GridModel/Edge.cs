@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Linq;
 namespace GridTableBuilder.GridModel
 {
     /// <summary> Edge of grid </summary>
+    [Serializable]
     public class Edge : IDrawable, ISelectable
     {
         public readonly Node Node1;

@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 
 namespace GridTableBuilder.GridModel
 {
+    [Serializable]
     public abstract class BaseEdgeBuilder
     {
         public readonly Edge Edge;

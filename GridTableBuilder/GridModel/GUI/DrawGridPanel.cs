@@ -1,8 +1,10 @@
 ﻿using GridTableBuilder.GridModel;
 using GridTableBuilder.GridModel.GUI;
+using GridTableBuilder.GridModel.Helpers;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -138,6 +140,17 @@ namespace GridTableBuilder.Controls
 
             //
             Invalidate();
+        }
+
+        public void LoadFromFile(string fileName)
+        {
+            if (!File.Exists(fileName)) return;
+            Build(SaverLoader.LoadFromFile(fileName));
+        }
+
+        public void SaveToFile(string fileName)
+        {
+            SaverLoader.SaveToFile(fileName, grid);
         }
     }
 }

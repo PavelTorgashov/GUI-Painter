@@ -15,4 +15,3 @@ D:\Work\GUI-Painter\GuiPaintLibrary\bin\Debug\GuiPaintLibrary.pdb
 D:\Work\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csproj.CoreCompileInputs.cache
 D:\Work\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.dll
 D:\Work\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.pdb
-D:\Work\GUI-Painter\GuiPaintLibrary\obj\Debug\GuiPaintLibrary.csprojAssemblyReference.cache

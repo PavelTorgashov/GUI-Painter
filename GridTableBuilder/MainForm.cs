@@ -1,6 +1,7 @@
 ﻿using GridTableBuilder.GridModel;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace GridTableBuilder
@@ -13,6 +14,19 @@ namespace GridTableBuilder
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            var fileName = Path.ChangeExtension(Application.ExecutablePath, ".bin");
+            pnDrawGrid.LoadFromFile(fileName);
+            BuildInterface();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var fileName = Path.ChangeExtension(Application.ExecutablePath, ".bin");
+            pnDrawGrid.SaveToFile(fileName);
         }
 
         private void pnDrawGrid_SelectedChanged(GridModel.ISelectable obj)

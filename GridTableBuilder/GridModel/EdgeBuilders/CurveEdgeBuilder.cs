@@ -3,6 +3,7 @@ using System.Drawing.Drawing2D;
 
 namespace GridTableBuilder.GridModel
 {
+    [Serializable]
     class CurveEdgeBuilder : BaseEdgeBuilder
     {
         public EdgeDirection EdgeDirection1;

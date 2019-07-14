@@ -1,7 +1,9 @@
-﻿using System.Drawing.Drawing2D;
+﻿using System;
+using System.Drawing.Drawing2D;
 
 namespace GridTableBuilder.GridModel
 {
+    [Serializable]
     class LineEdgeBuilder : BaseEdgeBuilder
     {
         public LineEdgeBuilder(Edge edge) : base(edge)
