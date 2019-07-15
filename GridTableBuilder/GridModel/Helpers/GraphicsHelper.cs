@@ -49,5 +49,40 @@ namespace System.Drawing
             var B = ((int)Math.Round(b)).Saturate();
             return Color.FromArgb(A, R, G, B);
         }
+
+        /// <source>
+        /// http://www.cyberforum.ru/csharp-net/thread522535.html#post3956206
+        /// </source>
+        public static Image Translucent(Image original, byte alpha = 128)
+        {
+            Bitmap myImage = new Bitmap(original);
+
+            BitmapData imageData = myImage.LockBits(
+                                        new Rectangle(0, 0, myImage.Width, myImage.Height),
+                                        ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            int stride = imageData.Stride;
+            IntPtr Scan0 = imageData.Scan0;
+            unsafe
+            {
+                byte* p = (byte*)(void*)Scan0;
+                int nOffset = stride - myImage.Width * 4;
+                int nWidth = myImage.Width;
+                for (int y = 0; y < myImage.Height; y++)
+                {
+                    for (int x = 0; x < nWidth; x++)
+                    {
+                        //p[0] =... // задаём синий
+                        //p[1] =... // задаём зелёный
+                        //p[2] =... // задаём красный
+                        p[3] = alpha; // задаём альфа канал 0 - полностью прозрачный
+                        p += 4;
+                    }
+                    p += nOffset;
+                }
+            }
+            myImage.UnlockBits(imageData);
+            return (Image)myImage;
+        }
+
     }
 }

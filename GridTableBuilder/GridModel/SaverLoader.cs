@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -30,6 +31,12 @@ namespace GridTableBuilder.GridModel
                 var grid = (Grid)formatter.Deserialize(zip);
                 return grid;
             }
+        }
+
+        public static Image LoadTranslucentFromFile(string fileName)
+        {
+            var original = (Bitmap)Image.FromFile(fileName);
+            return GraphicsHelper.Translucent(original);
         }
 
     }
