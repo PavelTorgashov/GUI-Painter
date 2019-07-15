@@ -6,6 +6,7 @@ using System.Linq;
 namespace GridTableBuilder.GridModel
 {
     /// <summary> Grid </summary>
+    [Serializable]
     public class Grid
     {
         /// <summary> Nodes </summary>

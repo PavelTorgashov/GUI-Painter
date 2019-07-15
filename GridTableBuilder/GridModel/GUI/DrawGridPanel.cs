@@ -1,8 +1,11 @@
 ﻿using GridTableBuilder.GridModel;
 using GridTableBuilder.GridModel.GUI;
+using GridTableBuilder.GridModel.Helpers;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,6 +14,19 @@ namespace GridTableBuilder.Controls
     public class DrawGridPanel : UserControl
     {
         public ISelectable Selected { get => guiBuilder.Selected; set => guiBuilder.Selected = value; }
+
+        [Category("Appearance"), Description("The current value of the background type drawgridpanel control."),
+         DefaultValue(typeof(BackgroundType), "BackColor")]
+        public BackgroundType BackgroundType
+        {
+            get => backgroundType;
+            set
+            {
+                backgroundType = value;
+                Invalidate();
+            }
+        }
+
         public event Action<ISelectable> SelectedChanged = delegate { };
 
         MouseController mouse;
@@ -18,6 +34,8 @@ namespace GridTableBuilder.Controls
         GuiBuilder guiBuilder;
         IDragger dragger;
         EdgeDrawer edgeDrawer;
+
+        BackgroundType backgroundType;
 
         public DrawGridPanel()
         {
@@ -47,6 +65,19 @@ namespace GridTableBuilder.Controls
         {
             pe.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             pe.Graphics.PixelOffsetMode = PixelOffsetMode.HighSpeed;
+
+            #region draw background
+
+            var backgroundRect = new Rectangle(0, 0, 10000, 10000);
+            var colors = new Color[] { this.BackColor, Color.Transparent, Color.White, Color.Black, SystemColors.Control };
+            if (backgroundType == BackgroundType.Chess)
+                using (var brush = new HatchBrush(HatchStyle.LargeCheckerBoard, SystemColors.Control, Color.White))
+                    pe.Graphics.FillRectangle(brush, backgroundRect);
+            else
+                using (var brush = new SolidBrush(colors[(int)backgroundType]))
+                    pe.Graphics.FillRectangle(brush, backgroundRect);
+
+            #endregion
 
             var ps = new DrawParams();
             foreach (var elem in guiBuilder.AllElements.OfType<IDrawable>().OrderBy(e => e.Priority))
@@ -139,5 +170,26 @@ namespace GridTableBuilder.Controls
             //
             Invalidate();
         }
+
+        public void LoadFromFile(string fileName)
+        {
+            if (!File.Exists(fileName)) return;
+            Build(SaverLoader.LoadFromFile(fileName));
+        }
+
+        public void SaveToFile(string fileName)
+        {
+            SaverLoader.SaveToFile(fileName, grid);
+        }
     }
+
+    public enum BackgroundType
+    {
+        BackColor,
+        Chess,
+        White,
+        Black,
+        Gray
+    }
+
 }
