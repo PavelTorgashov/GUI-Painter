@@ -14,8 +14,7 @@ namespace GridTableBuilder.Controls
     {
         public ISelectable Selected { get => guiBuilder.Selected; set => guiBuilder.Selected = value; }
 
-        [Category("Appearance"), Description("The current value of the background type drawgridpanel control."),
-         DefaultValue(typeof(BackgroundType), "BackColor")]
+        [Category("Appearance"), Description("The current value of the background type drawgridpanel control."), DefaultValue(typeof(BackgroundType), "BackColor")]
         public BackgroundType BackgroundType
         {
             get => backgroundType;
@@ -27,6 +26,7 @@ namespace GridTableBuilder.Controls
         }
 
         public event Action<ISelectable> SelectedChanged = delegate { };
+        public event Action GridChanged = delegate { };
 
         MouseController mouse;
         Grid grid;
@@ -141,6 +141,7 @@ namespace GridTableBuilder.Controls
                     (Selected as Edge).TryRemove();
                     Selected = null;
                     SelectedChanged(Selected);
+                    GridChanged();
                     Invalidate(false);
                 }
             }
@@ -156,6 +157,7 @@ namespace GridTableBuilder.Controls
 
         private void Mouse_MouseMove(MouseEventArgs e)
         {
+            GridChanged();
             Invalidate(false);
         }
 

@@ -1,4 +1,5 @@
-﻿using GridTableBuilder.GridModel;
+﻿using GridTableBuilder.Controls;
+using GridTableBuilder.GridModel;
 using System;
 using System.Drawing;
 using System.IO;
@@ -10,7 +11,7 @@ namespace GridTableBuilder
     {
         ISelectable Selected => pnDrawGrid.Selected;
         Edge SelectedEdge => Selected as Edge;
-        Grid grid;
+        Grid grid => (Grid)fileManager.Document;
         string TempFilePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Path.GetFileName(Application.ExecutablePath) + ".tmp");
 
         public MainForm()
@@ -18,30 +19,10 @@ namespace GridTableBuilder
             InitializeComponent();
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-
-            if (File.Exists(TempFilePath))
-                try
-                {
-                    grid = SaverLoader.LoadFromFile(TempFilePath);
-                }catch(Exception ex)
-                {
-                    grid = new Grid();
-                    Console.WriteLine(ex.Message);
-                }
-            else
-                grid = new Grid();
-
-            pnDrawGrid.Build(grid);
-
-            BuildInterface();
-        }
-
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             base.OnFormClosed(e);
+            //autosave
             SaverLoader.SaveToFile(TempFilePath, grid);
         }
 
@@ -88,6 +69,39 @@ namespace GridTableBuilder
             if (SelectedEdge.Builder is CurveEdgeBuilder)
                 (SelectedEdge.Builder as CurveEdgeBuilder).Radius = (float)nudRadius.Value;
             pnDrawGrid.Invalidate();
+        }
+
+        private void btBackground_Click(object sender, EventArgs e)
+        {
+            var res = ((int)pnDrawGrid.BackgroundType + 1) % Enum.GetValues(typeof(BackgroundType)).Length;
+            pnDrawGrid.BackgroundType = (BackgroundType)res;
+            pnDrawGrid.Invalidate();
+        }
+
+        private void fileManager_DocOpenedOrCreated(object sender, EventArgs e)
+        {
+            pnDrawGrid.Build(grid);
+            BuildInterface();
+        }
+
+        private void fileManager_NewDocNeeded(object sender, DocEventArgs e)
+        {
+            if (e.FirstDocument)
+            if (File.Exists(TempFilePath))
+                try
+                {
+                    e.Document = SaverLoader.LoadFromFile(TempFilePath);
+                } catch (Exception ex)
+                {
+                    e.Document = new Grid();
+                    Console.WriteLine(ex.Message);
+                } else
+                    e.Document = new Grid();
+        }
+
+        private void pnDrawGrid_GridChanged()
+        {
+            fileManager.IsDocumentChanged = true;
         }
     }
 }

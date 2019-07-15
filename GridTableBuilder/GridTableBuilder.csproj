@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ExceptionHandler.cs" />
+    <Compile Include="Controls\FileManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UndoRedoManager.cs" />
     <Compile Include="GridModel\EdgeBuilders\BaseEdgeBuilder.cs" />
     <Compile Include="GridModel\EdgeBuilders\CircleEdgeBuilder.cs" />
     <Compile Include="GridModel\EdgeBuilders\LineEdgeBuilder.cs" />

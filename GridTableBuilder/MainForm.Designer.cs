@@ -28,15 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnEdgeProperties = new System.Windows.Forms.Panel();
             this.lbRadius = new System.Windows.Forms.Label();
             this.nudRadius = new System.Windows.Forms.NumericUpDown();
             this.btCurve = new System.Windows.Forms.Button();
             this.btLine = new System.Windows.Forms.Button();
             this.btCircleEdge = new System.Windows.Forms.Button();
+            this.tsMain = new System.Windows.Forms.ToolStrip();
+            this.btBackground = new System.Windows.Forms.ToolStripButton();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.btOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.btSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.btSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.pnDrawGrid = new GridTableBuilder.Controls.DrawGridPanel();
+            this.fileManager = new System.Windows.Forms.FileManager(this.components);
             this.pnEdgeProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).BeginInit();
+            this.tsMain.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileManager)).BeginInit();
             this.SuspendLayout();
             // 
             // pnEdgeProperties
@@ -46,7 +61,7 @@
             this.pnEdgeProperties.Controls.Add(this.btCurve);
             this.pnEdgeProperties.Controls.Add(this.btLine);
             this.pnEdgeProperties.Controls.Add(this.btCircleEdge);
-            this.pnEdgeProperties.Location = new System.Drawing.Point(12, 1);
+            this.pnEdgeProperties.Location = new System.Drawing.Point(190, 27);
             this.pnEdgeProperties.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnEdgeProperties.Name = "pnEdgeProperties";
             this.pnEdgeProperties.Size = new System.Drawing.Size(773, 30);
@@ -115,22 +130,124 @@
             this.btCircleEdge.UseVisualStyleBackColor = true;
             this.btCircleEdge.Click += new System.EventHandler(this.btCircleEdge_Click);
             // 
+            // tsMain
+            // 
+            this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btBackground});
+            this.tsMain.Location = new System.Drawing.Point(0, 27);
+            this.tsMain.Name = "tsMain";
+            this.tsMain.Size = new System.Drawing.Size(1067, 27);
+            this.tsMain.TabIndex = 7;
+            this.tsMain.Text = "toolStrip1";
+            // 
+            // btBackground
+            // 
+            this.btBackground.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btBackground.Image = global::GridTableBuilder.Properties.Resources.chess;
+            this.btBackground.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btBackground.Name = "btBackground";
+            this.btBackground.Size = new System.Drawing.Size(24, 24);
+            this.btBackground.Text = "Background";
+            this.btBackground.Click += new System.EventHandler(this.btBackground_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1067, 27);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btNew,
+            this.btOpen,
+            this.btSave,
+            this.btSaveAs,
+            this.toolStripMenuItem1,
+            this.btQuit});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(41, 23);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // btNew
+            // 
+            this.btNew.Name = "btNew";
+            this.btNew.Size = new System.Drawing.Size(142, 26);
+            this.btNew.Text = "New";
+            // 
+            // btOpen
+            // 
+            this.btOpen.Name = "btOpen";
+            this.btOpen.Size = new System.Drawing.Size(142, 26);
+            this.btOpen.Text = "Open";
+            // 
+            // btSave
+            // 
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(142, 26);
+            this.btSave.Text = "Save";
+            // 
+            // btSaveAs
+            // 
+            this.btSaveAs.Name = "btSaveAs";
+            this.btSaveAs.Size = new System.Drawing.Size(142, 26);
+            this.btSaveAs.Text = "Save as ...";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(139, 6);
+            // 
+            // btQuit
+            // 
+            this.btQuit.Name = "btQuit";
+            this.btQuit.Size = new System.Drawing.Size(142, 26);
+            this.btQuit.Text = "Quit";
+            // 
             // pnDrawGrid
             // 
             this.pnDrawGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnDrawGrid.BackColor = System.Drawing.Color.White;
-            this.pnDrawGrid.BackgroundType = GridTableBuilder.Controls.BackgroundType.Chess;
+            this.pnDrawGrid.BackgroundType = GridTableBuilder.Controls.BackgroundType.White;
             this.pnDrawGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnDrawGrid.ChessPattern = global::GridTableBuilder.Properties.Resources.chess;
-            this.pnDrawGrid.Location = new System.Drawing.Point(12, 34);
+            this.pnDrawGrid.Location = new System.Drawing.Point(12, 56);
             this.pnDrawGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnDrawGrid.Name = "pnDrawGrid";
             this.pnDrawGrid.Selected = null;
-            this.pnDrawGrid.Size = new System.Drawing.Size(1043, 507);
+            this.pnDrawGrid.Size = new System.Drawing.Size(1043, 485);
             this.pnDrawGrid.TabIndex = 5;
             this.pnDrawGrid.SelectedChanged += new System.Action<GridTableBuilder.GridModel.ISelectable>(this.pnDrawGrid_SelectedChanged);
+            this.pnDrawGrid.GridChanged += new System.Action(this.pnDrawGrid_GridChanged);
+            // 
+            // fileManager
+            // 
+            this.fileManager.CurrentFileName = null;
+            this.fileManager.DefaultFolder = null;
+            this.fileManager.DefaultSaveExtension = null;
+            this.fileManager.Document = null;
+            this.fileManager.DocumentType = "image";
+            this.fileManager.IsDocumentChanged = false;
+            this.fileManager.MainForm = this;
+            this.fileManager.MainFormTitle = "GUI Painter";
+            this.fileManager.NewButton = this.btNew;
+            this.fileManager.OpenButton = this.btOpen;
+            this.fileManager.OpenFilter = "GUI Painter file|*.guip";
+            this.fileManager.SaveAsButton = this.btSaveAs;
+            this.fileManager.SaveButton = this.btSave;
+            this.fileManager.SaveFilter = "GUI Painter file|*.guip";
+            this.fileManager.Text = null;
+            this.fileManager.DocOpenedOrCreated += new System.EventHandler(this.fileManager_DocOpenedOrCreated);
+            this.fileManager.NewDocNeeded += new System.EventHandler<System.Windows.Forms.DocEventArgs>(this.fileManager_NewDocNeeded);
             // 
             // MainForm
             // 
@@ -138,7 +255,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.pnEdgeProperties);
+            this.Controls.Add(this.tsMain);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnDrawGrid);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -146,7 +266,13 @@
             this.pnEdgeProperties.ResumeLayout(false);
             this.pnEdgeProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).EndInit();
+            this.tsMain.ResumeLayout(false);
+            this.tsMain.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileManager)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -158,6 +284,17 @@
         private System.Windows.Forms.Button btCurve;
         private System.Windows.Forms.Label lbRadius;
         private System.Windows.Forms.NumericUpDown nudRadius;
+        private System.Windows.Forms.ToolStrip tsMain;
+        private System.Windows.Forms.ToolStripButton btBackground;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btNew;
+        private System.Windows.Forms.ToolStripMenuItem btOpen;
+        private System.Windows.Forms.ToolStripMenuItem btSave;
+        private System.Windows.Forms.ToolStripMenuItem btSaveAs;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem btQuit;
+        private System.Windows.Forms.FileManager fileManager;
     }
 }
 
