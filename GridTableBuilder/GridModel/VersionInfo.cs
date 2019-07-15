@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GridTableBuilder.GridModel.Helpers
+namespace GridTableBuilder.GridModel
 {
     [Serializable]
     public class VersionInfo

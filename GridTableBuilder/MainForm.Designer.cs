@@ -46,20 +46,19 @@
             this.pnEdgeProperties.Controls.Add(this.btCurve);
             this.pnEdgeProperties.Controls.Add(this.btLine);
             this.pnEdgeProperties.Controls.Add(this.btCircleEdge);
-            this.pnEdgeProperties.Location = new System.Drawing.Point(9, 1);
-            this.pnEdgeProperties.Margin = new System.Windows.Forms.Padding(2);
+            this.pnEdgeProperties.Location = new System.Drawing.Point(12, 1);
+            this.pnEdgeProperties.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnEdgeProperties.Name = "pnEdgeProperties";
-            this.pnEdgeProperties.Size = new System.Drawing.Size(580, 24);
+            this.pnEdgeProperties.Size = new System.Drawing.Size(773, 30);
             this.pnEdgeProperties.TabIndex = 6;
             // 
             // lbRadius
             // 
             this.lbRadius.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbRadius.AutoSize = true;
-            this.lbRadius.Location = new System.Drawing.Point(440, 6);
-            this.lbRadius.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbRadius.Location = new System.Drawing.Point(587, 7);
             this.lbRadius.Name = "lbRadius";
-            this.lbRadius.Size = new System.Drawing.Size(40, 13);
+            this.lbRadius.Size = new System.Drawing.Size(52, 17);
             this.lbRadius.TabIndex = 4;
             this.lbRadius.Text = "Radius";
             // 
@@ -71,24 +70,24 @@
             0,
             0,
             0});
-            this.nudRadius.Location = new System.Drawing.Point(483, 4);
-            this.nudRadius.Margin = new System.Windows.Forms.Padding(2);
+            this.nudRadius.Location = new System.Drawing.Point(644, 5);
+            this.nudRadius.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nudRadius.Maximum = new decimal(new int[] {
             200,
             0,
             0,
             0});
             this.nudRadius.Name = "nudRadius";
-            this.nudRadius.Size = new System.Drawing.Size(85, 20);
+            this.nudRadius.Size = new System.Drawing.Size(113, 22);
             this.nudRadius.TabIndex = 3;
             this.nudRadius.ValueChanged += new System.EventHandler(this.nudRadius_ValueChanged);
             // 
             // btCurve
             // 
-            this.btCurve.Location = new System.Drawing.Point(124, 2);
-            this.btCurve.Margin = new System.Windows.Forms.Padding(2);
+            this.btCurve.Location = new System.Drawing.Point(165, 2);
+            this.btCurve.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btCurve.Name = "btCurve";
-            this.btCurve.Size = new System.Drawing.Size(56, 20);
+            this.btCurve.Size = new System.Drawing.Size(75, 25);
             this.btCurve.TabIndex = 2;
             this.btCurve.Text = "Curve";
             this.btCurve.UseVisualStyleBackColor = true;
@@ -96,10 +95,10 @@
             // 
             // btLine
             // 
-            this.btLine.Location = new System.Drawing.Point(2, 2);
-            this.btLine.Margin = new System.Windows.Forms.Padding(2);
+            this.btLine.Location = new System.Drawing.Point(3, 2);
+            this.btLine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btLine.Name = "btLine";
-            this.btLine.Size = new System.Drawing.Size(56, 20);
+            this.btLine.Size = new System.Drawing.Size(75, 25);
             this.btLine.TabIndex = 1;
             this.btLine.Text = "Line";
             this.btLine.UseVisualStyleBackColor = true;
@@ -107,10 +106,10 @@
             // 
             // btCircleEdge
             // 
-            this.btCircleEdge.Location = new System.Drawing.Point(63, 2);
-            this.btCircleEdge.Margin = new System.Windows.Forms.Padding(2);
+            this.btCircleEdge.Location = new System.Drawing.Point(84, 2);
+            this.btCircleEdge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btCircleEdge.Name = "btCircleEdge";
-            this.btCircleEdge.Size = new System.Drawing.Size(56, 20);
+            this.btCircleEdge.Size = new System.Drawing.Size(75, 25);
             this.btCircleEdge.TabIndex = 0;
             this.btCircleEdge.Text = "Circle";
             this.btCircleEdge.UseVisualStyleBackColor = true;
@@ -124,26 +123,26 @@
             this.pnDrawGrid.BackColor = System.Drawing.Color.White;
             this.pnDrawGrid.BackgroundType = GridTableBuilder.Controls.BackgroundType.Chess;
             this.pnDrawGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnDrawGrid.Location = new System.Drawing.Point(9, 28);
-            this.pnDrawGrid.Margin = new System.Windows.Forms.Padding(2);
+            this.pnDrawGrid.ChessPattern = global::GridTableBuilder.Properties.Resources.chess;
+            this.pnDrawGrid.Location = new System.Drawing.Point(12, 34);
+            this.pnDrawGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnDrawGrid.Name = "pnDrawGrid";
             this.pnDrawGrid.Selected = null;
-            this.pnDrawGrid.Size = new System.Drawing.Size(783, 412);
+            this.pnDrawGrid.Size = new System.Drawing.Size(1043, 507);
             this.pnDrawGrid.TabIndex = 5;
             this.pnDrawGrid.SelectedChanged += new System.Action<GridTableBuilder.GridModel.ISelectable>(this.pnDrawGrid_SelectedChanged);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.pnEdgeProperties);
             this.Controls.Add(this.pnDrawGrid);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GridTableBuilder";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnEdgeProperties.ResumeLayout(false);
             this.pnEdgeProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).EndInit();

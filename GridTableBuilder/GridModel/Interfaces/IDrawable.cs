@@ -17,5 +17,8 @@ namespace GridTableBuilder.GridModel
     {
         public bool IsSelected;
         public bool IsEditMode;
+        public Color ServiceLineColor;
+        public Color DrawLineColor;
+        public Color SelectedLineColor;
     }
 }

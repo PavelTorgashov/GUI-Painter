@@ -102,10 +102,10 @@ namespace GridTableBuilder.GridModel
 
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
-            using (var pen = new Pen(Color.Black, 1))
+            using (var pen = new Pen(ps.DrawLineColor, 1))
             {
                 if (ps.IsSelected)
-                    pen.Color = Color.Blue;
+                    pen.Color = ps.SelectedLineColor;
 
                 if (ps.IsEditMode)
                     pen.StartCap = pen.EndCap = LineCap.RoundAnchor;

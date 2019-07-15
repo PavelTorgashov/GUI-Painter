@@ -41,7 +41,7 @@ namespace GridTableBuilder.GridModel
 
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
-            gr.DrawRectangle(Pens.Silver, Location.X - Size, Location.Y - Size, Size * 2, Size * 2);
+            gr.DrawRectangle(ps.ServiceLineColor.Pen(), Location.X - Size, Location.Y - Size, Size * 2, Size * 2);
         }
 
         #endregion

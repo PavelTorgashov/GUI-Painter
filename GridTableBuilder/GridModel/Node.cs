@@ -85,13 +85,13 @@ namespace GridTableBuilder.GridModel
             if (ps.IsSelected)
             {
                 const int size = 5;
-                gr.FillEllipse(Brushes.Silver, Location.X - size, Location.Y - size, size * 2, size * 2);
+                gr.FillEllipse(ps.ServiceLineColor.Brush(), Location.X - size, Location.Y - size, size * 2, size * 2);
             } else
             {
                 const int size = 4;
                 //gr.DrawLine(Pens.Silver, Location.X - size, Location.Y - size, Location.X + size, Location.Y + size);
                 //gr.DrawLine(Pens.Silver, Location.X - size, Location.Y + size, Location.X + size, Location.Y - size);
-                gr.DrawEllipse(Pens.Silver, Location.X - size, Location.Y - size, size * 2, size * 2);
+                gr.DrawEllipse(ps.ServiceLineColor.Pen(), Location.X - size, Location.Y - size, size * 2, size * 2);
             }
         }
 

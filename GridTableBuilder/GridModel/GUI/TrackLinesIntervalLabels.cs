@@ -23,7 +23,7 @@ namespace GridTableBuilder.GridModel
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
             using (var font = new Font("Lucida Console", 8))
-            using (var brush = new SolidBrush(Color.Silver))
+            using (var brush = new SolidBrush(ps.ServiceLineColor))
             {
                 var sf = (StringFormat)StringFormat.GenericTypographic.Clone();
                 sf.Alignment = StringAlignment.Center;

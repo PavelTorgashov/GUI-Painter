@@ -43,7 +43,7 @@ namespace GridTableBuilder.GridModel
 
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
-            using (var pen = new Pen(Color.Silver, 1))
+            using (var pen = new Pen(ps.ServiceLineColor, 1))
             {
                 const int max = 10000;
                 pen.DashPattern = pattern;

@@ -63,9 +63,10 @@
     <Compile Include="GridModel\GUI\NodeDragger.cs" />
     <Compile Include="GridModel\GUI\SizeMarkerDragger.cs" />
     <Compile Include="GridModel\GUI\TrackLineDragger.cs" />
+    <Compile Include="GridModel\Helpers\GraphicsHelper.cs" />
     <Compile Include="GridModel\Helpers\PointFHelper.cs" />
-    <Compile Include="GridModel\Helpers\SaverLoader.cs" />
-    <Compile Include="GridModel\Helpers\VersionInfo.cs" />
+    <Compile Include="GridModel\SaverLoader.cs" />
+    <Compile Include="GridModel\VersionInfo.cs" />
     <Compile Include="GridModel\Interfaces\IDraggable.cs" />
     <Compile Include="GridModel\Interfaces\IDragger.cs" />
     <Compile Include="GridModel\Interfaces\IDrawable.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -111,6 +113,9 @@
       <Project>{c0badbf0-1103-4b21-be2a-5d44a38ef01b}</Project>
       <Name>GuiPaintLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chess.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

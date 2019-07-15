@@ -3,18 +3,18 @@ using System.IO;
 using System.IO.Compression;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace GridTableBuilder.GridModel.Helpers
+namespace GridTableBuilder.GridModel
 {
     public static class SaverLoader
     {
-        public static void SaveToFile(string fileName, Grid grip)
+        public static void SaveToFile(string fileName, Grid grid)
         {
             using (var fs = File.Create(fileName))
             using (var zip = new GZipStream(fs, CompressionMode.Compress))
             {
                 var formatter = new BinaryFormatter();
                 formatter.Serialize(zip, new VersionInfo());
-                formatter.Serialize(zip, grip);
+                formatter.Serialize(zip, grid);
             }
         }
 

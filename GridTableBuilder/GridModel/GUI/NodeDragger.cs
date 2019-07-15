@@ -27,8 +27,8 @@ namespace GridTableBuilder.GridModel.GUI
             this.mc = mc;
 
             //calc min and max
-            var pointsX = node.Grid.Nodes.Where(n => n != node).Select(n => n.OriginalLocation.X).OrderBy(x => x).ToArray();
-            var pointsY = node.Grid.Nodes.Where(n => n != node).Select(n => n.OriginalLocation.Y).OrderBy(y => y).ToArray();
+            var pointsX = node.Grid.Nodes.Where(n => n != node).Select(n => n.OriginalLocation.X).ToArray();
+            var pointsY = node.Grid.Nodes.Where(n => n != node).Select(n => n.OriginalLocation.Y).ToArray();
 
             minX = pointsX.Min();
             maxX = pointsX.Max();
@@ -52,12 +52,16 @@ namespace GridTableBuilder.GridModel.GUI
             if (p.X > maxX && node.OriginalLocation.X < maxX) p.X = maxX;
             if (p.Y < minY && node.OriginalLocation.Y > minY) p.Y = minY;
             if (p.Y > maxY && node.OriginalLocation.Y < maxY) p.Y = maxY;
-            var offset = new PointF(p.X - node.OriginalLocation.X, p.Y - node.OriginalLocation.Y);
+
             // прилипание
             const float padding = 5;
-            if (Math.Abs(offset.X) < padding) offset.X = 0;
-            if (Math.Abs(offset.Y) < padding) offset.Y = 0;
-            node.Offset = offset;
+            var dx = node.Grid.GetDistanceToNearestStopPointX(p.X);
+            var dy = node.Grid.GetDistanceToNearestStopPointY(p.Y);
+            if (Math.Abs(dx) < padding) p.X += dx;
+            if (Math.Abs(dy) < padding) p.Y += dy;
+
+            //
+            node.Offset = new PointF(p.X - node.OriginalLocation.X, p.Y - node.OriginalLocation.Y);
         }
 
         public void Dispose()

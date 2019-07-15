@@ -1,6 +1,5 @@
 ﻿using GridTableBuilder.GridModel;
 using GridTableBuilder.GridModel.GUI;
-using GridTableBuilder.GridModel.Helpers;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -61,25 +60,48 @@ namespace GridTableBuilder.Controls
             Invalidate(false);
         }
 
+        public Image ChessPattern { get; set; }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             pe.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             pe.Graphics.PixelOffsetMode = PixelOffsetMode.HighSpeed;
 
-            #region draw background
+            //adjust draw params
+            var ps = new DrawParams() { ServiceLineColor = Color.Silver, DrawLineColor = Color.Black, SelectedLineColor = Color.Blue };
 
-            var backgroundRect = new Rectangle(0, 0, 10000, 10000);
-            var colors = new Color[] { this.BackColor, Color.Transparent, Color.White, Color.Black, SystemColors.Control };
-            if (backgroundType == BackgroundType.Chess)
-                using (var brush = new HatchBrush(HatchStyle.LargeCheckerBoard, SystemColors.Control, Color.White))
+            switch (backgroundType)
+            {
+                case BackgroundType.Black:
+                    ps.ServiceLineColor = Color.Silver;
+                    ps.DrawLineColor = Color.White;
+                    ps.SelectedLineColor = Color.Aquamarine;
+                    break;
+                case BackgroundType.Chess:
+                    ps.ServiceLineColor = Color.Gray;
+                    break;
+                case BackgroundType.Gray:
+                    ps.ServiceLineColor = Color.Silver.Light(-50);
+                    break;
+            }
+
+            #region Draw background
+
+            var backgroundRect = new Rectangle(0, 0, Width, Height);
+            var colors = new Color[] { this.BackColor, Color.Transparent, Color.White, Color.Black, Color.Silver };
+            if (backgroundType == BackgroundType.Chess && ChessPattern != null)
+            {
+                backgroundRect.Offset(15, 15);
+                using (var brush = new TextureBrush(ChessPattern))
                     pe.Graphics.FillRectangle(brush, backgroundRect);
-            else
+            } else
+            {
                 using (var brush = new SolidBrush(colors[(int)backgroundType]))
                     pe.Graphics.FillRectangle(brush, backgroundRect);
+            }
 
             #endregion
 
-            var ps = new DrawParams();
             foreach (var elem in guiBuilder.AllElements.OfType<IDrawable>().OrderBy(e => e.Priority))
             {
                 ps.IsSelected = Selected == elem;
@@ -169,17 +191,6 @@ namespace GridTableBuilder.Controls
 
             //
             Invalidate();
-        }
-
-        public void LoadFromFile(string fileName)
-        {
-            if (!File.Exists(fileName)) return;
-            Build(SaverLoader.LoadFromFile(fileName));
-        }
-
-        public void SaveToFile(string fileName)
-        {
-            SaverLoader.SaveToFile(fileName, grid);
         }
     }
 

@@ -89,7 +89,7 @@ namespace GridTableBuilder.GridModel.GUI
 
             if (From != Point.Empty && To != Point.Empty)
             {
-                using (var pen = new Pen(Color.Black, 1))
+                using (var pen = new Pen(ps.DrawLineColor, 1))
                 {
                     pen.DashPattern = pattern;
                     gr.DrawLine(pen, From, To);

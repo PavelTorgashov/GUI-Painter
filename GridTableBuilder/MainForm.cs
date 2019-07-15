@@ -10,23 +10,39 @@ namespace GridTableBuilder
     {
         ISelectable Selected => pnDrawGrid.Selected;
         Edge SelectedEdge => Selected as Edge;
+        Grid grid;
+        string TempFilePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Path.GetFileName(Application.ExecutablePath) + ".tmp");
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            var fileName = Path.ChangeExtension(Application.ExecutablePath, ".bin");
-            pnDrawGrid.LoadFromFile(fileName);
+            base.OnLoad(e);
+
+            if (File.Exists(TempFilePath))
+                try
+                {
+                    grid = SaverLoader.LoadFromFile(TempFilePath);
+                }catch(Exception ex)
+                {
+                    grid = new Grid();
+                    Console.WriteLine(ex.Message);
+                }
+            else
+                grid = new Grid();
+
+            pnDrawGrid.Build(grid);
+
             BuildInterface();
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        protected override void OnFormClosed(FormClosedEventArgs e)
         {
-            var fileName = Path.ChangeExtension(Application.ExecutablePath, ".bin");
-            pnDrawGrid.SaveToFile(fileName);
+            base.OnFormClosed(e);
+            SaverLoader.SaveToFile(TempFilePath, grid);
         }
 
         private void pnDrawGrid_SelectedChanged(GridModel.ISelectable obj)

@@ -50,6 +50,35 @@ namespace GridTableBuilder.GridModel
             }
         }
 
+        #region Stop points
+
+        public IEnumerable<float> StopPointsX => Nodes.Select(n => n.OriginalLocation.X).Distinct();
+        public IEnumerable<float> StopPointsY => Nodes.Select(n => n.OriginalLocation.Y).Distinct();
+
+        public float GetDistanceToNearestStopPointX(float x)
+        {
+            return GetDistanceToNearestStopPoint(x, StopPointsX);
+        }
+
+        public float GetDistanceToNearestStopPointY(float y)
+        {
+            return GetDistanceToNearestStopPoint(y, StopPointsY);
+        }
+
+        float GetDistanceToNearestStopPoint(float v, IEnumerable<float> stops)
+        {
+            var res = float.MaxValue;
+            foreach (var stop in stops)
+            {
+                var dist = stop - v;
+                if (Math.Abs(dist) < Math.Abs(res))
+                    res = dist;
+            }
+
+            return res;
+        }
+
+        #endregion
 
         #region Add edges
 
