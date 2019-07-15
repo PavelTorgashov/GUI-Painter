@@ -38,7 +38,7 @@ namespace GridTableBuilder.GridModel
 
         public bool TryRemove()
         {
-            if (Grid.Nodes.All(n => n.Edges.Count <= 2))//single cyclomatic graph
+            if (Grid.Nodes.All(n => n.Edges.Count <= 2) && Grid.IsFullyConnected)//single cyclomatic graph
                 return false;
 
             //remove edge

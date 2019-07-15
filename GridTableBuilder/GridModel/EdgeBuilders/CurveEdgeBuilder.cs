@@ -22,10 +22,9 @@ namespace GridTableBuilder.GridModel
 
         public override GraphicsPath GetPath()
         {
-            const float CIRCLE_BEZIER_POWER = 0.666666f;
             var len = Node1.LocationF.DistanceTo(Node2.LocationF);
             var r = Radius;
-            if (r > len / 2) r = len / 2f;
+            if (r > 2 * len) r = 2 * len;
 
             var dir1 = GetDir(Node1, EdgeDirection1);
             var dir2 = GetDir(Node2, EdgeDirection2);

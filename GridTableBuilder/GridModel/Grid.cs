@@ -24,6 +24,31 @@ namespace GridTableBuilder.GridModel
             }
         }
 
+        public bool IsFullyConnected
+        {
+            get
+            {
+                var hash = new HashSet<Node>();
+                void Find(Node root)
+                {
+                    hash.Add(root);
+                    foreach (var e in root.Edges)
+                    {
+                        var n = e.GetOtherNode(root);
+                        if (!hash.Contains(n))
+                            Find(n);
+                    }
+                }
+
+                if (Nodes.Count == 0)
+                    return false;
+
+                Find(Nodes.First.Value);
+
+                return hash.Count == Nodes.Count;
+            }
+        }
+
 
         #region Add edges
 

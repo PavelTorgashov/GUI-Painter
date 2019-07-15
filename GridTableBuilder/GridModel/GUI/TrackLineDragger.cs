@@ -28,7 +28,7 @@ namespace GridTableBuilder.GridModel.GUI
 
             //calc min and max
             var points = line.Grid.Nodes.Select(n => line.IsHorizontal ? n.OriginalLocation.Y : n.OriginalLocation.X).OrderBy(x => x).ToArray();
-            const float padding = 3;
+            const float padding = 1;
             minLocation = points.Where(x => x < line.Location).LastOrDefault() + padding;
             maxLocation = points.Where(x => x > line.Location).FirstOrDefault() - padding;
             if (maxLocation.Around(-padding))

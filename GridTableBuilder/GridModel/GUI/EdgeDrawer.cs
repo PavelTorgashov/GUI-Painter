@@ -32,8 +32,16 @@ namespace GridTableBuilder.GridModel.GUI
 
         private void Mc_MouseMove(MouseEventArgs e)
         {
-            //get orientation
             var loc = e.Location;
+
+            //too small line
+            if (loc.ToPointF().DistanceSquareTo(mc.MouseDownPoint) < 100)
+            {
+                From = To = Point.Empty;
+                return;
+            }
+
+            //get orientation
             var isHorizontal = Math.Abs(loc.X - mc.MouseDownPoint.X) > Math.Abs(loc.Y - mc.MouseDownPoint.Y);
 
             //get track points

@@ -26,7 +26,7 @@ namespace GridTableBuilder.GridModel
                 }
             }
         }
-
+        
         public override GraphicsPath GetPath()
         {
             const float CIRCLE_BEZIER_POWER = 0.666666f;
