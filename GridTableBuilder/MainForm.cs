@@ -91,12 +91,13 @@ namespace GridTableBuilder
                 try
                 {
                     e.Document = SaverLoader.LoadFromFile(TempFilePath);
+                    return;
                 } catch (Exception ex)
                 {
-                    e.Document = new Grid();
                     Console.WriteLine(ex.Message);
-                } else
-                    e.Document = new Grid();
+                }
+
+            e.Document = new Grid();
         }
 
         private void pnDrawGrid_GridChanged()
