@@ -33,12 +33,6 @@ namespace GridTableBuilder.GridModel
             }
         }
 
-        public static Image LoadTranslucentFromFile(string fileName)
-        {
-            var original = (Bitmap)Image.FromFile(fileName);
-            return GraphicsHelper.Translucent(original);
-        }
-
     }
 
 }

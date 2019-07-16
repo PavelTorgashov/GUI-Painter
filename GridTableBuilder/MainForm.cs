@@ -104,5 +104,16 @@ namespace GridTableBuilder
         {
             fileManager.IsDocumentChanged = true;
         }
+
+        private void btLoadTranslucentImage_Click(object sender, EventArgs e)
+        {
+            var dlg = new OpenFileDialog
+            {
+                Filter = @"Graphics files (*.png;*.jpg;*.bmp;*.gif)|*.png;*.jpg;*.bmp;*.gif"
+            };
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+            pnDrawGrid.LoadTranslucent(dlg.FileName);
+            pnDrawGrid.Invalidate();
+        }
     }
 }

@@ -47,6 +47,8 @@
             this.btQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.pnDrawGrid = new GridTableBuilder.Controls.DrawGridPanel();
             this.fileManager = new System.Windows.Forms.FileManager(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btLoadTranslucentImage = new System.Windows.Forms.ToolStripMenuItem();
             this.pnEdgeProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).BeginInit();
             this.tsMain.SuspendLayout();
@@ -62,7 +64,7 @@
             this.pnEdgeProperties.Controls.Add(this.btLine);
             this.pnEdgeProperties.Controls.Add(this.btCircleEdge);
             this.pnEdgeProperties.Location = new System.Drawing.Point(142, 22);
-            this.pnEdgeProperties.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnEdgeProperties.Margin = new System.Windows.Forms.Padding(2);
             this.pnEdgeProperties.Name = "pnEdgeProperties";
             this.pnEdgeProperties.Size = new System.Drawing.Size(580, 24);
             this.pnEdgeProperties.TabIndex = 6;
@@ -87,7 +89,7 @@
             0,
             0});
             this.nudRadius.Location = new System.Drawing.Point(483, 4);
-            this.nudRadius.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudRadius.Margin = new System.Windows.Forms.Padding(2);
             this.nudRadius.Maximum = new decimal(new int[] {
             200,
             0,
@@ -101,7 +103,7 @@
             // btCurve
             // 
             this.btCurve.Location = new System.Drawing.Point(124, 2);
-            this.btCurve.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btCurve.Margin = new System.Windows.Forms.Padding(2);
             this.btCurve.Name = "btCurve";
             this.btCurve.Size = new System.Drawing.Size(56, 20);
             this.btCurve.TabIndex = 2;
@@ -112,7 +114,7 @@
             // btLine
             // 
             this.btLine.Location = new System.Drawing.Point(2, 2);
-            this.btLine.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btLine.Margin = new System.Windows.Forms.Padding(2);
             this.btLine.Name = "btLine";
             this.btLine.Size = new System.Drawing.Size(56, 20);
             this.btLine.TabIndex = 1;
@@ -123,7 +125,7 @@
             // btCircleEdge
             // 
             this.btCircleEdge.Location = new System.Drawing.Point(63, 2);
-            this.btCircleEdge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btCircleEdge.Margin = new System.Windows.Forms.Padding(2);
             this.btCircleEdge.Name = "btCircleEdge";
             this.btCircleEdge.Size = new System.Drawing.Size(56, 20);
             this.btCircleEdge.TabIndex = 0;
@@ -172,6 +174,8 @@
             this.btOpen,
             this.btSave,
             this.btSaveAs,
+            this.toolStripMenuItem2,
+            this.btLoadTranslucentImage,
             this.toolStripMenuItem1,
             this.btQuit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -181,36 +185,36 @@
             // btNew
             // 
             this.btNew.Name = "btNew";
-            this.btNew.Size = new System.Drawing.Size(124, 22);
+            this.btNew.Size = new System.Drawing.Size(207, 22);
             this.btNew.Text = "New";
             // 
             // btOpen
             // 
             this.btOpen.Name = "btOpen";
-            this.btOpen.Size = new System.Drawing.Size(124, 22);
+            this.btOpen.Size = new System.Drawing.Size(207, 22);
             this.btOpen.Text = "Open";
             // 
             // btSave
             // 
             this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(124, 22);
+            this.btSave.Size = new System.Drawing.Size(207, 22);
             this.btSave.Text = "Save";
             // 
             // btSaveAs
             // 
             this.btSaveAs.Name = "btSaveAs";
-            this.btSaveAs.Size = new System.Drawing.Size(124, 22);
+            this.btSaveAs.Size = new System.Drawing.Size(207, 22);
             this.btSaveAs.Text = "Save as ...";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(121, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
             // 
             // btQuit
             // 
             this.btQuit.Name = "btQuit";
-            this.btQuit.Size = new System.Drawing.Size(124, 22);
+            this.btQuit.Size = new System.Drawing.Size(207, 22);
             this.btQuit.Text = "Quit";
             // 
             // pnDrawGrid
@@ -223,7 +227,7 @@
             this.pnDrawGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnDrawGrid.ChessPattern = global::GridTableBuilder.Properties.Resources.chess;
             this.pnDrawGrid.Location = new System.Drawing.Point(9, 53);
-            this.pnDrawGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnDrawGrid.Margin = new System.Windows.Forms.Padding(2);
             this.pnDrawGrid.Name = "pnDrawGrid";
             this.pnDrawGrid.Selected = null;
             this.pnDrawGrid.Size = new System.Drawing.Size(783, 387);
@@ -250,6 +254,18 @@
             this.fileManager.Text = null;
             this.fileManager.DocOpenedOrCreated += new System.EventHandler(this.fileManager_DocOpenedOrCreated);
             this.fileManager.NewDocNeeded += new System.EventHandler<System.Windows.Forms.DocEventArgs>(this.fileManager_NewDocNeeded);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 6);
+            // 
+            // btLoadTranslucentImage
+            // 
+            this.btLoadTranslucentImage.Name = "btLoadTranslucentImage";
+            this.btLoadTranslucentImage.Size = new System.Drawing.Size(207, 22);
+            this.btLoadTranslucentImage.Text = "Load translucent image...";
+            this.btLoadTranslucentImage.Click += new System.EventHandler(this.btLoadTranslucentImage_Click);
             // 
             // MainForm
             // 
@@ -296,6 +312,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem btQuit;
         private System.Windows.Forms.FileManager fileManager;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem btLoadTranslucentImage;
     }
 }
 

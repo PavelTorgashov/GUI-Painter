@@ -36,12 +36,26 @@ namespace GridTableBuilder.Controls
 
         BackgroundType backgroundType;
 
+        TranslucentDrawer translucentDrawer;
+
+        public void LoadTranslucent(string fileName)
+        {
+            translucentDrawer.Load(fileName);
+        }
+
         public DrawGridPanel()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
             mouse = new MouseController(this, Mouse_MouseDown, Mouse_MouseMove, Mouse_MouseUp);
 
+            translucentDrawer = new TranslucentDrawer(mouse);
+
             Build(new Grid());
+        }
+
+        ~DrawGridPanel()
+        {
+            translucentDrawer.Dispose();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -102,6 +116,12 @@ namespace GridTableBuilder.Controls
 
             #endregion
 
+            #region Draw translucent image
+
+            translucentDrawer.Draw(pe.Graphics, ps);
+
+            #endregion
+
             foreach (var elem in guiBuilder.AllElements.OfType<IDrawable>().OrderBy(e => e.Priority))
             {
                 ps.IsSelected = Selected == elem;
@@ -128,7 +148,7 @@ namespace GridTableBuilder.Controls
                 if (dr != null)
                     Cursor = dr.Cursor;
                 else
-                    Cursor = Cursors.Default;
+                    Cursor = translucentDrawer.GetCursor(e.Location);
             }
         }
 
