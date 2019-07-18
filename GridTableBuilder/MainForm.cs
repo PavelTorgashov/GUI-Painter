@@ -33,7 +33,7 @@ namespace GridTableBuilder
 
         private void BuildInterface()
         {
-            pnEdgeProperties.Visible = Selected is Edge;
+            pnEdgeProperties.Visible = !pnDrawGrid.PreviewMode && Selected is Edge;
             lbRadius.Visible = nudRadius.Visible = SelectedEdge != null && (SelectedEdge.Builder is CurveEdgeBuilder);
 
             pnDrawGrid.Invalidate();
@@ -76,6 +76,14 @@ namespace GridTableBuilder
             var res = ((int)pnDrawGrid.BackgroundType + 1) % Enum.GetValues(typeof(BackgroundType)).Length;
             pnDrawGrid.BackgroundType = (BackgroundType)res;
             pnDrawGrid.Invalidate();
+        }
+
+        private void btPreview_Click(object sender, EventArgs e)
+        {
+            btPreview.Checked = !btPreview.Checked;
+            pnDrawGrid.PreviewMode = btPreview.Checked;
+            pnDrawGrid.Invalidate();
+            BuildInterface();
         }
 
         private void fileManager_DocOpenedOrCreated(object sender, EventArgs e)

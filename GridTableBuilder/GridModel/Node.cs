@@ -82,6 +82,8 @@ namespace GridTableBuilder.GridModel
 
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
+            if (ps.IsPreview) return;
+
             if (ps.IsSelected)
             {
                 const int size = 5;

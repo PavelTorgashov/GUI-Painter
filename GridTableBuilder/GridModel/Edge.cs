@@ -104,10 +104,10 @@ namespace GridTableBuilder.GridModel
         {
             using (var pen = new Pen(ps.DrawLineColor, 1))
             {
-                if (ps.IsSelected)
+                if (ps.IsSelected && !ps.IsPreview)
                     pen.Color = ps.SelectedLineColor;
 
-                if (ps.IsEditMode)
+                if (ps.IsEditMode && !ps.IsPreview)
                     pen.StartCap = pen.EndCap = LineCap.RoundAnchor;
 
                 gr.DrawPath(pen, Path);

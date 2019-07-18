@@ -1,7 +1,6 @@
 ﻿using GridTableBuilder.GridModel.GUI;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 
 namespace GridTableBuilder.GridModel
 {
@@ -43,6 +42,8 @@ namespace GridTableBuilder.GridModel
 
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
+            if (ps.IsPreview) return;
+
             using (var pen = new Pen(ps.ServiceLineColor, 1))
             {
                 const int max = 10000;

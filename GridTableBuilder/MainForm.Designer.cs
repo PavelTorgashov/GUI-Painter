@@ -37,18 +37,19 @@
             this.btCircleEdge = new System.Windows.Forms.Button();
             this.tsMain = new System.Windows.Forms.ToolStrip();
             this.btBackground = new System.Windows.Forms.ToolStripButton();
+            this.btPreview = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btNew = new System.Windows.Forms.ToolStripMenuItem();
             this.btOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.btSave = new System.Windows.Forms.ToolStripMenuItem();
             this.btSaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btQuit = new System.Windows.Forms.ToolStripMenuItem();
-            this.pnDrawGrid = new GridTableBuilder.Controls.DrawGridPanel();
-            this.fileManager = new System.Windows.Forms.FileManager(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.btLoadTranslucentImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileManager = new System.Windows.Forms.FileManager(this.components);
+            this.pnDrawGrid = new GridTableBuilder.Controls.DrawGridPanel();
             this.pnEdgeProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).BeginInit();
             this.tsMain.SuspendLayout();
@@ -138,7 +139,8 @@
             this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btBackground});
+            this.btBackground,
+            this.btPreview});
             this.tsMain.Location = new System.Drawing.Point(0, 24);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(800, 27);
@@ -154,6 +156,16 @@
             this.btBackground.Size = new System.Drawing.Size(24, 24);
             this.btBackground.Text = "Background";
             this.btBackground.Click += new System.EventHandler(this.btBackground_Click);
+            // 
+            // btPreview
+            // 
+            this.btPreview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btPreview.Image = global::GridTableBuilder.Properties.Resources.preview;
+            this.btPreview.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btPreview.Name = "btPreview";
+            this.btPreview.Size = new System.Drawing.Size(24, 24);
+            this.btPreview.Text = "Preview";
+            this.btPreview.Click += new System.EventHandler(this.btPreview_Click);
             // 
             // menuStrip1
             // 
@@ -196,6 +208,7 @@
             // 
             // btSave
             // 
+            this.btSave.Enabled = false;
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(207, 22);
             this.btSave.Text = "Save";
@@ -205,6 +218,18 @@
             this.btSaveAs.Name = "btSaveAs";
             this.btSaveAs.Size = new System.Drawing.Size(207, 22);
             this.btSaveAs.Text = "Save as ...";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 6);
+            // 
+            // btLoadTranslucentImage
+            // 
+            this.btLoadTranslucentImage.Name = "btLoadTranslucentImage";
+            this.btLoadTranslucentImage.Size = new System.Drawing.Size(207, 22);
+            this.btLoadTranslucentImage.Text = "Load translucent image...";
+            this.btLoadTranslucentImage.Click += new System.EventHandler(this.btLoadTranslucentImage_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -216,24 +241,6 @@
             this.btQuit.Name = "btQuit";
             this.btQuit.Size = new System.Drawing.Size(207, 22);
             this.btQuit.Text = "Quit";
-            // 
-            // pnDrawGrid
-            // 
-            this.pnDrawGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnDrawGrid.BackColor = System.Drawing.Color.White;
-            this.pnDrawGrid.BackgroundType = GridTableBuilder.Controls.BackgroundType.White;
-            this.pnDrawGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnDrawGrid.ChessPattern = global::GridTableBuilder.Properties.Resources.chess;
-            this.pnDrawGrid.Location = new System.Drawing.Point(9, 53);
-            this.pnDrawGrid.Margin = new System.Windows.Forms.Padding(2);
-            this.pnDrawGrid.Name = "pnDrawGrid";
-            this.pnDrawGrid.Selected = null;
-            this.pnDrawGrid.Size = new System.Drawing.Size(783, 387);
-            this.pnDrawGrid.TabIndex = 5;
-            this.pnDrawGrid.SelectedChanged += new System.Action<GridTableBuilder.GridModel.ISelectable>(this.pnDrawGrid_SelectedChanged);
-            this.pnDrawGrid.GridChanged += new System.Action(this.pnDrawGrid_GridChanged);
             // 
             // fileManager
             // 
@@ -255,17 +262,24 @@
             this.fileManager.DocOpenedOrCreated += new System.EventHandler(this.fileManager_DocOpenedOrCreated);
             this.fileManager.NewDocNeeded += new System.EventHandler<System.Windows.Forms.DocEventArgs>(this.fileManager_NewDocNeeded);
             // 
-            // toolStripMenuItem2
+            // pnDrawGrid
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 6);
-            // 
-            // btLoadTranslucentImage
-            // 
-            this.btLoadTranslucentImage.Name = "btLoadTranslucentImage";
-            this.btLoadTranslucentImage.Size = new System.Drawing.Size(207, 22);
-            this.btLoadTranslucentImage.Text = "Load translucent image...";
-            this.btLoadTranslucentImage.Click += new System.EventHandler(this.btLoadTranslucentImage_Click);
+            this.pnDrawGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnDrawGrid.BackColor = System.Drawing.Color.White;
+            this.pnDrawGrid.BackgroundType = GridTableBuilder.Controls.BackgroundType.White;
+            this.pnDrawGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnDrawGrid.ChessPattern = global::GridTableBuilder.Properties.Resources.chess;
+            this.pnDrawGrid.Location = new System.Drawing.Point(9, 53);
+            this.pnDrawGrid.Margin = new System.Windows.Forms.Padding(2);
+            this.pnDrawGrid.Name = "pnDrawGrid";
+            this.pnDrawGrid.PreviewMode = false;
+            this.pnDrawGrid.Selected = null;
+            this.pnDrawGrid.Size = new System.Drawing.Size(783, 387);
+            this.pnDrawGrid.TabIndex = 5;
+            this.pnDrawGrid.SelectedChanged += new System.Action<GridTableBuilder.GridModel.ISelectable>(this.pnDrawGrid_SelectedChanged);
+            this.pnDrawGrid.GridChanged += new System.Action(this.pnDrawGrid_GridChanged);
             // 
             // MainForm
             // 
@@ -279,7 +293,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GridTableBuilder";
+            this.Text = "GUI Painter - New image";
             this.pnEdgeProperties.ResumeLayout(false);
             this.pnEdgeProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).EndInit();
@@ -314,6 +328,7 @@
         private System.Windows.Forms.FileManager fileManager;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem btLoadTranslucentImage;
+        private System.Windows.Forms.ToolStripButton btPreview;
     }
 }
 

@@ -25,6 +25,16 @@ namespace GridTableBuilder.Controls
             }
         }
 
+        public bool PreviewMode
+        {
+            get => previewMode;
+            set
+            {
+                previewMode = value;
+                Invalidate();
+            }
+        }
+
         public event Action<ISelectable> SelectedChanged = delegate { };
         public event Action GridChanged = delegate { };
 
@@ -37,6 +47,7 @@ namespace GridTableBuilder.Controls
         BackgroundType backgroundType;
 
         TranslucentDrawer translucentDrawer;
+        private bool previewMode;
 
         public void LoadTranslucent(string fileName)
         {
@@ -64,7 +75,7 @@ namespace GridTableBuilder.Controls
             Build(grid);
         }
 
-        public void Build (Grid grid)
+        public void Build(Grid grid)
         {
             this.grid = grid;
             guiBuilder = new GuiBuilder(grid);
@@ -82,7 +93,13 @@ namespace GridTableBuilder.Controls
             pe.Graphics.PixelOffsetMode = PixelOffsetMode.HighSpeed;
 
             //adjust draw params
-            var ps = new DrawParams() { ServiceLineColor = Color.Silver, DrawLineColor = Color.Black, SelectedLineColor = Color.Blue };
+            var ps = new DrawParams()
+            {
+                ServiceLineColor = Color.Silver,
+                DrawLineColor = Color.Black,
+                SelectedLineColor = Color.Blue,
+                IsPreview = previewMode
+            };
 
             switch (backgroundType)
             {
@@ -108,7 +125,8 @@ namespace GridTableBuilder.Controls
                 backgroundRect.Offset(15, 15);
                 using (var brush = new TextureBrush(ChessPattern))
                     pe.Graphics.FillRectangle(brush, backgroundRect);
-            } else
+            }
+            else
             {
                 using (var brush = new SolidBrush(colors[(int)backgroundType]))
                     pe.Graphics.FillRectangle(brush, backgroundRect);
@@ -118,7 +136,8 @@ namespace GridTableBuilder.Controls
 
             #region Draw translucent image
 
-            translucentDrawer.Draw(pe.Graphics, ps);
+            if (!previewMode)
+                translucentDrawer.Draw(pe.Graphics, ps);
 
             #endregion
 
@@ -135,6 +154,8 @@ namespace GridTableBuilder.Controls
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
+            if (previewMode) return;
+
             base.OnMouseMove(e);
 
             if (edgeDrawer != null)
@@ -148,12 +169,20 @@ namespace GridTableBuilder.Controls
                 if (dr != null)
                     Cursor = dr.Cursor;
                 else
-                    Cursor = translucentDrawer.GetCursor(e.Location);
+                {
+                    var tr = translucentDrawer.GetDragger(e.Location);
+                    if (tr != null)
+                        Cursor = tr.Cursor;
+                    else
+                        Cursor = Cursors.Default;
+                }
             }
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            if (previewMode) return;
+
             if (e.KeyCode == Keys.Delete)
             {
                 if (Selected is Edge)
@@ -165,6 +194,7 @@ namespace GridTableBuilder.Controls
                     Invalidate(false);
                 }
             }
+
             base.OnKeyDown(e);
         }
 
@@ -183,8 +213,10 @@ namespace GridTableBuilder.Controls
 
         private void Mouse_MouseDown(MouseEventArgs e)
         {
+            if (previewMode) return;
+
             //get selectable
-            var newSelectable = guiBuilder.AllElements.OfType<ISelectable>().OrderBy(n => n.Priority).Where(n=>n.IsHit(e.Location)).FirstOrDefault();
+            var newSelectable = guiBuilder.AllElements.OfType<ISelectable>().OrderBy(n => n.Priority).Where(n => n.IsHit(e.Location)).FirstOrDefault();
 
             //select
             if (newSelectable != Selected)
@@ -205,7 +237,8 @@ namespace GridTableBuilder.Controls
             {
                 edgeDrawer = new EdgeDrawer();
                 edgeDrawer.Start(mouse, grid);
-            }else
+            }
+            else
             {
                 edgeDrawer?.Dispose();
                 edgeDrawer = null;

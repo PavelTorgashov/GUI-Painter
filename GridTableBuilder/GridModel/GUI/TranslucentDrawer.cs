@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace GridTableBuilder.GridModel.GUI
 {
-    class TranslucentDrawer : IDisposable
+    class TranslucentDrawer : IDisposable, IDragger
     {
         MouseController mc;
         Image image;
@@ -14,6 +14,7 @@ namespace GridTableBuilder.GridModel.GUI
         Point marker;
         bool down;
         bool sized;
+        Cursor cursor = Cursors.Default;
 
         private float ratio = 1;
         public float MarkersSize => 4;
@@ -90,10 +91,19 @@ namespace GridTableBuilder.GridModel.GUI
             return new Rectangle(loc, new Size(sz * 2, sz * 2));
         }
 
-        public Cursor GetCursor(Point location)
+        public IDragger GetDragger(Point location)
         {
-            return GetLocationRect().Contains(location) ? Cursors.SizeAll
-                : GetLocationSizeRect().Contains(location) ? Cursors.SizeNWSE : Cursors.Default;
+            if (GetLocationRect().Contains(location))
+            {
+                cursor = Cursors.SizeAll;
+                return this;
+            }
+            if (GetLocationSizeRect().Contains(location))
+            {
+                cursor = Cursors.SizeNWSE;
+                return this;
+            }
+            return null;
         }
 
         private void Mc_MouseDown(MouseEventArgs e)
@@ -187,5 +197,11 @@ namespace GridTableBuilder.GridModel.GUI
             return (Image)myImage;
         }
 
+        public Cursor Cursor => cursor;
+
+        public void Start(MouseController mc)
+        {
+            // stub
+        }
     }
 }

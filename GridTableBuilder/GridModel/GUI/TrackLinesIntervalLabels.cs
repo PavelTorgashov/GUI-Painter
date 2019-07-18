@@ -22,6 +22,8 @@ namespace GridTableBuilder.GridModel
 
         void IDrawable.Draw(Graphics gr, DrawParams ps)
         {
+            if (ps.IsPreview) return;
+
             using (var font = new Font("Lucida Console", 8))
             using (var brush = new SolidBrush(ps.ServiceLineColor))
             {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace GridTableBuilder.GridModel
 {
@@ -17,6 +12,7 @@ namespace GridTableBuilder.GridModel
     {
         public bool IsSelected;
         public bool IsEditMode;
+        public bool IsPreview;
         public Color ServiceLineColor;
         public Color DrawLineColor;
         public Color SelectedLineColor;
